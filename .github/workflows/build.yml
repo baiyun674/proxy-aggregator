@@ -1,0 +1,67 @@
+name: Auto Aggregate Clean Nodes
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'        # 每 6 小时自动运行（UTC）
+  workflow_dispatch: {}            # 允许在 Actions 页面手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  build-clean-sub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python 环境与依赖
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+
+      - name: 离线自检（解析 / 亚洲保底名额 / 配置生成）
+        run: python selftest.py
+
+      - name: 下载最新 Mihomo 核心用于真实隧道穿透测试
+        run: |
+          set -e
+          LATEST_URL=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
+            | grep "browser_download_url.*mihomo-linux-amd64-compatible-.*gz" \
+            | cut -d '"' -f 4 | head -n 1)
+          echo "mihomo asset: $LATEST_URL"
+          curl -L "$LATEST_URL" -o mihomo.gz
+          gzip -d mihomo.gz
+          chmod +x mihomo
+          ./mihomo -v || true
+
+      - name: 执行真落地 + 纯净度聚合脚本（含亚洲保底）
+        run: python aggregator.py
+
+      - name: 同时导出一份 Base64 订阅（可选，便于旧客户端导入）
+        run: |
+          if [ -f mihomo_stable.yaml ]; then
+            base64 -w0 mihomo_stable.yaml > subscription.b64 || true
+          fi
+
+      - name: 自动提交生成的配置回仓库
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          if [ -f mihomo_stable.yaml ] || [ -f singbox.json ]; then
+            git add mihomo_stable.yaml singbox.json
+            git diff --staged --quiet || git commit -m "chore: update clean nodes [skip ci]"
+            git push
+          fi
+
+      - name: 上传本次产物为 Artifact（便于不推仓库时下载）
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mihomo-clean-subscription
+          path: |
+            mihomo_stable.yaml
+            singbox.json
+            subscription.b64
+          if-no-files-found: ignore

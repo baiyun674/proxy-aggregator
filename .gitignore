@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 运行期临时产物（CI 重新生成）
+temp_mihomo.yaml
+_selftest_out.yaml
+_selftest_sb.json
+subscription.b64
+
+# mihomo 核心二进制（CI 自动下载，勿入库）
+mihomo
+mihomo.exe
+mihomo.gz
+
+# 本地想保留生成结果就别提交这两份（取消下行注释可保留订阅产物入库）
+# mihomo_stable.yaml
+# singbox.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+"""项目配置：订阅源 / 地区白名单 / 名额与超时。改这里即可，无需动 aggregator.py。"""
+
+# ============ 1. 真实 GitHub 免费聚合订阅源（来自对话整理） ============
+SUB_URLS = [
+    # Au1rxx 聚合池（每小时 sing-box 实测真连接后发布，存活率高）
+    "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/clash.yaml",
+    "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/v2ray-base64.txt",
+    # Zhuhai Free Nodes（每小时更新，约 50 精筛节点，含美/日/新/港/英/德）
+    "https://raw.githubusercontent.com/zhuhaiuk/free-nodes/main/clash_config.yaml",
+    # Pawdroid / Free-servers（近 20k star，每 6 小时更新，Base64 通用）
+    "https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub",
+    # Ripaojiedian 永久免费池（每日更新，Clash YAML + Base64 双源）
+    "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash",
+    "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub",
+    # aiboboxx V2Ray 免费池（长寿自动抓取，补 vmess/vless）
+    "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2",
+    # V2RayAggregator 多源合并池（全网公开节点合并为 Clash）
+    "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml",
+]
+
+# ============ 2. 常用国家与核心城市白名单 ============
+TARGET_REGIONS = {
+    "JP": {"name": "🇯🇵 日本", "cities": {"Tokyo": "🇯🇵 日本-东京", "Osaka": "🇯🇵 日本-大阪"},
+           "keep_other_cities": False},
+    "SG": {"name": "🇸🇬 新加坡", "cities": {"Singapore": "🇸🇬 新加坡"}, "keep_other_cities": True},
+    "US": {"name": "🇺🇸 美国",
+           "cities": {"Los Angeles": "🇺🇸 美国-洛杉矶", "San Jose": "🇺🇸 美国-圣何塞",
+                      "Seattle": "🇺🇸 美国-西雅图", "Santa Clara": "🇺🇸 美国-硅谷",
+                      "Silicon Valley": "🇺🇸 美国-硅谷"},
+           "keep_other_cities": False},
+    "HK": {"name": "🇭🇰 香港", "cities": {"Hong Kong": "🇭🇰 香港"}, "keep_other_cities": True},
+    "TW": {"name": "🇹🇼 台湾", "cities": {"Taipei": "🇹🇼 台湾-台北"}, "keep_other_cities": False},
+    "KR": {"name": "🇰🇷 韩国", "cities": {"Seoul": "🇰🇷 韩国-首尔"}, "keep_other_cities": False},
+    "DE": {"name": "🇩🇪 德国", "cities": {"Frankfurt am Main": "🇩🇪 德国-法兰克福",
+                                          "Frankfurt": "🇩🇪 德国-法兰克福"}, "keep_other_cities": False},
+    "GB": {"name": "🇬🇧 英国", "cities": {"London": "🇬🇧 英国-伦敦"}, "keep_other_cities": False},
+}
+
+# 亚洲国家码（用于 server 侧 region_hint 判定，决定保底名额归属）
+ASIAN_COUNTRY_CODES = {"HK", "TW", "JP", "KR", "SG", "MO", "TH", "VN", "MY", "ID", "PH", "IN", "CN"}
+
+# 高风险/重度滥用机房 ASN 关键词黑名单（命中直接淘汰，提升纯净度）
+BAD_ASN_KEYWORDS = ["m247", "colocrossing", "sharktech", "frantech",
+                    "buyvm", "psychz", "quadranet", "serverpoint", "chorus"]
+
+# ============ 3. 测速 / 深测参数 ============
+TCP_TIMEOUT = 2.0           # TCP 握手初筛超时（秒）
+TUNNEL_TIMEOUT = 6.0        # 真连接隧道探测超时（秒）
+MAX_VERIFY_NODES = 250      # 每次送入隧道深测的最大节点数（控制在 ip-api 免费额度内）
+ASIA_MIN_RATIO = 0.55       # ★亚洲保底：深测名额中至少切给 server 侧亚洲节点的比例
+BASE_LISTENER_PORT = 20000  # 临时 Mihomo 隧道监听起始端口
+CONCURRENCY_PING = 80       # TCP 初筛并发
+CONCURRENCY_TUNNEL = 40     # 隧道深测并发
+
+# ip-api 纯净度查询字段
+GEOIP_FIELDS = "status,query,countryCode,city,isp,as,proxy,hosting"
+OUTPUT_FILE = "mihomo_stable.yaml"
+SINGBOX_OUTPUT_FILE = "singbox.json"
+
+# 是否除「fallback 固定IP」外，额外为每个城市生成一组「url-test 防抖优选」（仅 Mihomo）
+ENABLE_URLTEST_GROUPS = True
+URLTEST_TOLERANCE = 500     # 仅当新节点快 500ms 以上才允许切 IP（防抖）
+URLTEST_INTERVAL = 600      # 10 分钟测一次
+URLTEST_URL = "https://www.gstatic.com/generate_204"
