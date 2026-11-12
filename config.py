@@ -17,6 +17,22 @@ SUB_URLS = [
     "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2",
     # V2RayAggregator 多源合并池（全网公开节点合并为 Clash）
     "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml",
+
+    # ===== 扩充源（按 star 高 + 每日更新筛选，2026-11 实测有效）=====
+    # Barabama/FreeNodes（3.4k★，每日更新，双格式高产量：clash ~1.7k + uri ~3.6k）
+    "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/clashmeta.yaml",
+    "https://raw.githubusercontent.com/Barabama/FreeNodes/refs/heads/main/nodes/nodev2ray.txt",
+    # ermaozi/get_subscribe（9.5k★，每日更新，聚合订阅 v2ray.txt ~580 + clash.yml ~219）
+    "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/v2ray.txt",
+    "https://raw.githubusercontent.com/ermaozi/get_subscribe/main/subscribe/clash.yml",
+    # chengaopan/AutoMergePublicNodes（8.4k★，每日更新，全网公开节点合并 Base64）
+    "https://raw.githubusercontent.com/chengaopan/AutoMergePublicNodes/master/list.txt",
+    # free18/v2ray（5.9k★，每日更新，Base64 通用订阅）
+    "https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt",
+    # anaer/Sub（老牌长寿 Clash 池，~2.1k 节点）
+    "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml",
+    # 0xRadikal/Free-v2ray-Configs（844★，每日更新，v2rayNG profile Base64，量大）
+    "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt",
 ]
 
 # ============ 2. 常用国家与核心城市白名单 ============
