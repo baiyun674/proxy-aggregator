@@ -71,7 +71,7 @@ def test_asia_quota_small_pool():
     alive = [_node(f"jp{i}.com", 443, 150 + i, "asia") for i in range(10)]
     alive += [_node(f"us{i}.com", 443, 10 + i, "america") for i in range(300)]
     chosen = select_candidates_with_asia_quota(alive, MAX_VERIFY_NODES, ASIA_MIN_RATIO)
-    assert len(chosen) == MAX_VERIFY_NODES, len(chosen)
+    assert len(chosen) == min(MAX_VERIFY_NODES, len(alive)), len(chosen)
     assert sum(1 for n in chosen if n["_hint_region"] == "asia") == 10
     print("  [ok] 亚洲池不足时名额回填，总数守恒")
 
