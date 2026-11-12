@@ -46,8 +46,8 @@ def test_classify_region():
 def test_asia_quota():
     """关键测试：美国 runner 下美国 TCP 延迟碾压亚洲，亚洲仍应拿到保底名额。"""
     alive = []
-    # 500 个美国节点，延迟都很低（模拟美国 runner 偏袒）
-    for i in range(500):
+    # 1500 个美国节点，延迟都很低（模拟美国 runner 偏袒；池须大于 MAX_VERIFY_NODES 才能测出名额上限与饿死效应）
+    for i in range(1500):
         alive.append(_node(f"us{i}.example.com", 443, 8 + (i % 40), "america"))
     # 80 个亚洲节点，延迟偏高（被全局排序挤到后面）
     for i in range(80):

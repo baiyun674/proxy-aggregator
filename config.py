@@ -80,11 +80,11 @@ HOSTING_PENALTY = 150       # 数据中心 IP 的排序惩罚（ms），原生 I
 # ============ 3. 测速 / 深测参数 ============
 TCP_TIMEOUT = 2.0           # TCP 握手初筛超时（秒）
 TUNNEL_TIMEOUT = 8.0        # 真连接隧道探测超时（秒）——放宽，给慢的免费节点机会
-MAX_VERIFY_NODES = 450      # 每次送入隧道深测的最大节点数（原 250 产量偏低，提到 450）
+MAX_VERIFY_NODES = 1000     # 每次送入隧道深测的最大节点数（隧道通过率仅 ~10%，收录数≈名额×0.1；450→1000 让收录翻倍。public 仓库分钟数不限量，可放心加深）
 ASIA_MIN_RATIO = 0.55       # ★亚洲保底：深测名额中至少切给 server 侧亚洲节点的比例
 BASE_LISTENER_PORT = 20000  # 临时 Mihomo 隧道监听起始端口
 CONCURRENCY_PING = 80       # TCP 初筛并发
-CONCURRENCY_TUNNEL = 50     # 隧道深测并发（随池子放大略提）
+CONCURRENCY_TUNNEL = 80     # 隧道深测并发（名额放大到 1000，并发同步提，控制单次时长）
 
 # ip-api 纯净度查询字段
 GEOIP_FIELDS = "status,query,countryCode,city,isp,as,proxy,hosting"
