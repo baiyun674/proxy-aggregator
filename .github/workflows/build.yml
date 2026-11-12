@@ -67,10 +67,13 @@ jobs:
             git checkout --orphan output
           fi
           git rm -rf . >/dev/null 2>&1 || true
-          cp /tmp/out/* . 2>/dev/null || true
+          # 只放产物 + .nojekyll，绝不 git add -A（否则会混入 mihomo 二进制/__pycache__/temp）
+          cp /tmp/out/mihomo_stable.yaml ./mihomo_stable.yaml 2>/dev/null || true
+          cp /tmp/out/singbox.json ./singbox.json 2>/dev/null || true
+          cp /tmp/out/subscription.b64 ./subscription.b64 2>/dev/null || true
           # 关闭 Pages 的 Jekyll 处理，保证 yaml/json 原样可访问
           touch .nojekyll
-          git add -A
+          git add -f mihomo_stable.yaml singbox.json subscription.b64 .nojekyll 2>/dev/null || true
           git commit -m "chore: 更新节点产物 $(date -u +%Y-%m-%dT%H:%M)Z" --allow-empty || true
           git push -f origin output
 
