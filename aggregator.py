@@ -38,6 +38,7 @@ from config import (
     BASE_LISTENER_PORT, CONCURRENCY_PING, CONCURRENCY_TUNNEL,
     GEOIP_FIELDS, OUTPUT_FILE, SINGBOX_OUTPUT_FILE,
     ENABLE_URLTEST_GROUPS, URLTEST_TOLERANCE, URLTEST_INTERVAL, URLTEST_URL,
+    DROP_ON_PROXY_FLAG, PROXY_PENALTY, HOSTING_PENALTY,
 )
 
 
@@ -339,7 +340,11 @@ async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[
 
         if cc not in TARGET_REGIONS:
             continue
-        if is_proxy or any(bad in as_info for bad in BAD_ASN_KEYWORDS):
+        # 硬淘汰：仅重灾/蜜罐机房 ASN；proxy 标志默认不淘汰（出口本就是代理）
+        if any(bad in as_info for bad in BAD_ASN_KEYWORDS):
+            rejected_dirty += 1
+            continue
+        if DROP_ON_PROXY_FLAG and is_proxy:
             rejected_dirty += 1
             continue
 
@@ -356,7 +361,8 @@ async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[
                 continue
 
         node["_purity_tag"] = "原生ISP" if not is_hosting else "纯净机房"
-        node["_sort_score"] = node["_rtt_ms"] + (0 if not is_hosting else 150)
+        penalty = (0 if not is_hosting else HOSTING_PENALTY) + (0 if not is_proxy else PROXY_PENALTY)
+        node["_sort_score"] = node["_rtt_ms"] + penalty
         grouped.setdefault(group_title, []).append(node)
 
     print(f"[*] 纯净度过滤完成：剔除 {rejected_dirty} 个公开代理/脏机房 IP。")

@@ -45,15 +45,34 @@ jobs:
             base64 -w0 mihomo_stable.yaml > subscription.b64 || true
           fi
 
-      - name: 自动提交生成的配置回仓库
+      - name: 发布产物到独立 output 分支（main 保持纯净源码）
+        if: always()
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          if [ -f mihomo_stable.yaml ] || [ -f singbox.json ]; then
-            git add mihomo_stable.yaml singbox.json
-            git diff --staged --quiet || git commit -m "chore: update clean nodes [skip ci]"
-            git push
+          set -e
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 先把本次产物收进临时目录，避免切分支时被覆盖
+          mkdir -p /tmp/out
+          for f in mihomo_stable.yaml singbox.json subscription.b64; do
+            [ -f "$f" ] && cp "$f" /tmp/out/ || true
+          done
+          if [ -z "$(ls -A /tmp/out)" ]; then
+            echo "无产物可发布，跳过"; exit 0
           fi
+          # output 分支：orphan，仅放产物，不含源码
+          if git ls-remote --exit-code --heads origin output >/dev/null 2>&1; then
+            git fetch --no-tags origin output
+            git checkout -B output FETCH_HEAD
+          else
+            git checkout --orphan output
+          fi
+          git rm -rf . >/dev/null 2>&1 || true
+          cp /tmp/out/* . 2>/dev/null || true
+          # 关闭 Pages 的 Jekyll 处理，保证 yaml/json 原样可访问
+          touch .nojekyll
+          git add -A
+          git commit -m "chore: 更新节点产物 $(date -u +%Y-%m-%dT%H:%M)Z" --allow-empty || true
+          git push -f origin output
 
       - name: 上传本次产物为 Artifact（便于不推仓库时下载）
         uses: actions/upload-artifact@v4

@@ -44,6 +44,15 @@ ASIAN_COUNTRY_CODES = {"HK", "TW", "JP", "KR", "SG", "MO", "TH", "VN", "MY", "ID
 BAD_ASN_KEYWORDS = ["m247", "colocrossing", "sharktech", "frantech",
                     "buyvm", "psychz", "quadranet", "serverpoint", "chorus"]
 
+# 纯净度策略：
+#   - BAD_ASN 命中 = 硬淘汰（真·重灾/蜜罐机房）
+#   - ip-api 的 proxy 标志 = 节点出口本就是代理，几乎必然 True，默认只降权不淘汰
+#     （设 DROP_ON_PROXY_FLAG=True 才硬丢，会大幅减少产量，一般别开）
+#   - hosting（数据中心 IP）= 降权保留，原生 ISP 优先
+DROP_ON_PROXY_FLAG = False
+PROXY_PENALTY = 120         # 命中 proxy 标志的排序惩罚（ms）
+HOSTING_PENALTY = 150       # 数据中心 IP 的排序惩罚（ms），原生 ISP 加 0
+
 # ============ 3. 测速 / 深测参数 ============
 TCP_TIMEOUT = 2.0           # TCP 握手初筛超时（秒）
 TUNNEL_TIMEOUT = 8.0        # 真连接隧道探测超时（秒）——放宽，给慢的免费节点机会

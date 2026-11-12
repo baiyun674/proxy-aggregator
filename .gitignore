@@ -16,9 +16,9 @@ mihomo
 mihomo.exe
 mihomo.gz
 
-# 本地想保留生成结果就别提交这两份（取消下行注释可保留订阅产物入库）
-# mihomo_stable.yaml
-# singbox.json
+# 订阅产物只在 output 分支发布；main 保持纯净源码，不入库
+mihomo_stable.yaml
+singbox.json
 
 # OS / IDE
 .DS_Store
