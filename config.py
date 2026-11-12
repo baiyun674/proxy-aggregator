@@ -80,7 +80,8 @@ ENABLE_URLTEST_GROUPS = True
 URLTEST_TOLERANCE = 500     # 仅当新节点快 500ms 以上才允许切 IP（防抖）
 URLTEST_INTERVAL = 600      # 10 分钟测一次
 
-# ★健康检查 URL：必须用国内可直连的端点。原 gstatic/google 在墙内不可达，
-#   会导致 Verge 里所有 url-test/fallback 组显示 Timeout（节点其实能用，是探测点连不上）。
-HEALTHCHECK_URL = "http://cp.cloudflare.com/generate_204"
+# ★健康检查 URL：必须用「墙外、被墙」的端点。test-url 是走代理节点出去访问的，
+#   只有节点真能翻出去才连得上 → 这才是「验真梯子」。绝不能用国内可达站点，
+#   否则只能连国内的废节点会假装通过。google 被墙最彻底，generate_204 返回快。
+HEALTHCHECK_URL = "http://www.google.com/generate_204"
 URLTEST_URL = HEALTHCHECK_URL

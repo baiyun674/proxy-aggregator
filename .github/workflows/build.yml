@@ -2,7 +2,7 @@ name: Auto Aggregate Clean Nodes
 
 on:
   schedule:
-    - cron: '0 */6 * * *'        # 每 6 小时自动运行（UTC）
+    - cron: '0 */3 * * *'        # 每 3 小时自动运行（免费节点几小时就腐烂，刷新越勤越不容易「一堆不能用」）
   workflow_dispatch: {}            # 允许在 Actions 页面手动触发
 
 permissions:
