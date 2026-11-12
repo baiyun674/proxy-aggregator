@@ -14,7 +14,7 @@ dns:
   - https://1.1.1.1/dns-query
   - https://dns.google/dns-query
 proxies:
-- name: 🇭🇰 香港-01 [纯净机房|609ms]
+- name: 🇭🇰 香港-01 [纯净机房|549ms]
   server: 47.242.81.94
   port: 52080
   type: vmess
@@ -31,7 +31,7 @@ proxies:
     headers:
       Host:
       - openai.com
-- name: 🇭🇰 香港-02 [纯净机房|816ms]
+- name: 🇭🇰 香港-02 [纯净机房|713ms]
   server: 156.239.224.107
   port: 57278
   type: vmess
@@ -43,7 +43,7 @@ proxies:
   network: ws
   ws-opts:
     path: /
-- name: 🇭🇰 香港-03 [纯净机房|837ms]
+- name: 🇭🇰 香港-03 [纯净机房|720ms]
   server: 142.252.37.58
   port: 6182
   type: http
@@ -51,7 +51,7 @@ proxies:
   password: 0wcmn0va70ra
   tls: false
   skip-cert-verify: false
-- name: 🇯🇵 日本-东京-01 [纯净机房|648ms]
+- name: 🇯🇵 日本-东京-01 [纯净机房|548ms]
   server: 104.252.87.200
   port: 9177
   type: http
@@ -59,21 +59,42 @@ proxies:
   password: 0wcmn0va70ra
   tls: false
   skip-cert-verify: false
-- name: 🇰🇷 韩国-首尔-01 [纯净机房|683ms]
+- name: 🇰🇷 韩国-首尔-01 [纯净机房|617ms]
   server: 158.247.253.243
   port: 443
   type: trojan
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   sni: connectgraduateswithjobopeningsandgrowprofessionally.com
   skip-cert-verify: false
-- name: 🇸🇬 新加坡-01 [纯净机房|649ms]
-  server: 149.88.106.74
+- name: 🇸🇬 新加坡-01 [纯净机房|593ms]
+  type: ss
+  server: 68.183.227.236
+  port: 8080
+  cipher: rc4-md5
+  password: 14fFPrbezE3HDZzsMOr6
+  udp: true
+- name: 🇸🇬 新加坡-02 [纯净机房|603ms]
+  type: ss
+  server: 128.1.186.73
+  port: 8080
+  cipher: rc4-md5
+  password: 14fFPrbezE3HDZzsMOr6
+  udp: true
+- name: 🇸🇬 新加坡-03 [纯净机房|612ms]
+  type: ss
+  server: 68.183.235.240
+  port: 8080
+  cipher: rc4-md5
+  password: 14fFPrbezE3HDZzsMOr6
+  udp: true
+- name: 🇸🇬 新加坡-04 [纯净机房|623ms]
+  server: 149.88.106.73
   port: 19999
   type: ss
   cipher: aes-256-gcm
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-- name: 🇸🇬 新加坡-02 [纯净机房|716ms]
-  server: 149.88.106.73
+- name: 🇸🇬 新加坡-05 [纯净机房|626ms]
+  server: 149.88.106.74
   port: 19999
   type: ss
   cipher: aes-256-gcm
@@ -94,9 +115,9 @@ proxy-groups:
 - name: 🔒 🇭🇰 香港 (固定纯净IP)
   type: fallback
   proxies: &id001
-  - 🇭🇰 香港-01 [纯净机房|609ms]
-  - 🇭🇰 香港-02 [纯净机房|816ms]
-  - 🇭🇰 香港-03 [纯净机房|837ms]
+  - 🇭🇰 香港-01 [纯净机房|549ms]
+  - 🇭🇰 香港-02 [纯净机房|713ms]
+  - 🇭🇰 香港-03 [纯净机房|720ms]
   url: https://www.gstatic.com/generate_204
   interval: 180
   lazy: false
@@ -110,7 +131,7 @@ proxy-groups:
 - name: 🔒 🇯🇵 日本-东京 (固定纯净IP)
   type: fallback
   proxies: &id002
-  - 🇯🇵 日本-东京-01 [纯净机房|648ms]
+  - 🇯🇵 日本-东京-01 [纯净机房|548ms]
   url: https://www.gstatic.com/generate_204
   interval: 180
   lazy: false
@@ -124,7 +145,7 @@ proxy-groups:
 - name: 🔒 🇰🇷 韩国-首尔 (固定纯净IP)
   type: fallback
   proxies: &id003
-  - 🇰🇷 韩国-首尔-01 [纯净机房|683ms]
+  - 🇰🇷 韩国-首尔-01 [纯净机房|617ms]
   url: https://www.gstatic.com/generate_204
   interval: 180
   lazy: false
@@ -138,8 +159,11 @@ proxy-groups:
 - name: 🔒 🇸🇬 新加坡 (固定纯净IP)
   type: fallback
   proxies: &id004
-  - 🇸🇬 新加坡-01 [纯净机房|649ms]
-  - 🇸🇬 新加坡-02 [纯净机房|716ms]
+  - 🇸🇬 新加坡-01 [纯净机房|593ms]
+  - 🇸🇬 新加坡-02 [纯净机房|603ms]
+  - 🇸🇬 新加坡-03 [纯净机房|612ms]
+  - 🇸🇬 新加坡-04 [纯净机房|623ms]
+  - 🇸🇬 新加坡-05 [纯净机房|626ms]
   url: https://www.gstatic.com/generate_204
   interval: 180
   lazy: false
