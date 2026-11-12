@@ -34,10 +34,11 @@ from typing import List, Dict, Any, Tuple
 
 from config import (
     SUB_URLS, TARGET_REGIONS, ASIAN_COUNTRY_CODES, BAD_ASN_KEYWORDS,
+    BAD_ASN_SOFT, BAD_ASN_SOFT_PENALTY,
     TCP_TIMEOUT, TUNNEL_TIMEOUT, MAX_VERIFY_NODES, ASIA_MIN_RATIO,
     BASE_LISTENER_PORT, CONCURRENCY_PING, CONCURRENCY_TUNNEL,
     GEOIP_FIELDS, OUTPUT_FILE, SINGBOX_OUTPUT_FILE,
-    ENABLE_URLTEST_GROUPS, URLTEST_TOLERANCE, URLTEST_INTERVAL, URLTEST_URL,
+    ENABLE_URLTEST_GROUPS, URLTEST_TOLERANCE, URLTEST_INTERVAL, URLTEST_URL, HEALTHCHECK_URL,
     DROP_ON_PROXY_FLAG, PROXY_PENALTY, HOSTING_PENALTY,
 )
 
@@ -340,8 +341,10 @@ async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[
 
         if cc not in TARGET_REGIONS:
             continue
-        # 硬淘汰：仅重灾/蜜罐机房 ASN；proxy 标志默认不淘汰（出口本就是代理）
-        if any(bad in as_info for bad in BAD_ASN_KEYWORDS):
+        # 硬淘汰：仅 m247/sharktech 这类真蜜罐/重灾机房；软黑名单只降权保留（否则没有西方节点）
+        hard_hit = any(bad in as_info for bad in BAD_ASN_KEYWORDS)
+        soft_hit = any(bad in as_info for bad in BAD_ASN_SOFT)
+        if hard_hit:
             rejected_dirty += 1
             continue
         if DROP_ON_PROXY_FLAG and is_proxy:
@@ -360,8 +363,15 @@ async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[
             else:
                 continue
 
-        node["_purity_tag"] = "原生ISP" if not is_hosting else "纯净机房"
-        penalty = (0 if not is_hosting else HOSTING_PENALTY) + (0 if not is_proxy else PROXY_PENALTY)
+        if not is_hosting and not soft_hit:
+            node["_purity_tag"] = "原生ISP"
+        elif soft_hit:
+            node["_purity_tag"] = "廉价机房"
+        else:
+            node["_purity_tag"] = "纯净机房"
+        penalty = ((0 if not is_hosting else HOSTING_PENALTY)
+                   + (0 if not is_proxy else PROXY_PENALTY)
+                   + (0 if not soft_hit else BAD_ASN_SOFT_PENALTY))
         node["_sort_score"] = node["_rtt_ms"] + penalty
         grouped.setdefault(group_title, []).append(node)
 
@@ -383,7 +393,7 @@ def build_mihomo_config(grouped: Dict[str, List[Dict[str, Any]]], output_file: s
             proxy_names.append(name)
         city_groups.append({
             "name": f"🔒 {group_title} (固定纯净IP)", "type": "fallback",
-            "proxies": proxy_names, "url": "https://www.gstatic.com/generate_204",
+            "proxies": proxy_names, "url": HEALTHCHECK_URL,
             "interval": 180, "lazy": False,
         })
         # 额外「防抖优选」url-test 组：长间隔 + 大 tolerance，只有明显更快才切，体验更稳

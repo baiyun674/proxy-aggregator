@@ -27,22 +27,30 @@ TARGET_REGIONS = {
     "US": {"name": "🇺🇸 美国",
            "cities": {"Los Angeles": "🇺🇸 美国-洛杉矶", "San Jose": "🇺🇸 美国-圣何塞",
                       "Seattle": "🇺🇸 美国-西雅图", "Santa Clara": "🇺🇸 美国-硅谷",
-                      "Silicon Valley": "🇺🇸 美国-硅谷"},
-           "keep_other_cities": False},
+                      "Silicon Valley": "🇺🇸 美国-硅谷", "New York": "🇺🇸 美国-纽约",
+                      "Chicago": "🇺🇸 美国-芝加哥", "Dallas": "🇺🇸 美国-达拉斯",
+                      "Atlanta": "🇺🇸 美国-亚特兰大", "Miami": "🇺🇸 美国-迈阿密",
+                      "Ashburn": "🇺🇸 美国-阿什本"},
+           "keep_other_cities": True},
     "HK": {"name": "🇭🇰 香港", "cities": {"Hong Kong": "🇭🇰 香港"}, "keep_other_cities": True},
     "TW": {"name": "🇹🇼 台湾", "cities": {"Taipei": "🇹🇼 台湾-台北"}, "keep_other_cities": False},
     "KR": {"name": "🇰🇷 韩国", "cities": {"Seoul": "🇰🇷 韩国-首尔"}, "keep_other_cities": False},
     "DE": {"name": "🇩🇪 德国", "cities": {"Frankfurt am Main": "🇩🇪 德国-法兰克福",
-                                          "Frankfurt": "🇩🇪 德国-法兰克福"}, "keep_other_cities": False},
-    "GB": {"name": "🇬🇧 英国", "cities": {"London": "🇬🇧 英国-伦敦"}, "keep_other_cities": False},
+                                          "Frankfurt": "🇩🇪 德国-法兰克福"}, "keep_other_cities": True},
+    "GB": {"name": "🇬🇧 英国", "cities": {"London": "🇬🇧 英国-伦敦"}, "keep_other_cities": True},
 }
 
 # 亚洲国家码（用于 server 侧 region_hint 判定，决定保底名额归属）
 ASIAN_COUNTRY_CODES = {"HK", "TW", "JP", "KR", "SG", "MO", "TH", "VN", "MY", "ID", "PH", "IN", "CN"}
 
-# 高风险/重度滥用机房 ASN 关键词黑名单（命中直接淘汰，提升纯净度）
-BAD_ASN_KEYWORDS = ["m247", "colocrossing", "sharktech", "frantech",
-                    "buyvm", "psychz", "quadranet", "serverpoint", "chorus"]
+# 高风险/重度滥用机房 ASN 黑名单：
+#   - HARD：真·蜜罐/重灾机房，命中直接淘汰（这些 IP 被各家风控重点标记，留下=白忙）
+#   - SOFT：廉价数据中心，命中只「降权」不淘汰 —— 免费美国/欧洲节点绝大多数住在这几家，
+#     若硬丢就会「一个西方 IP 都没有」，所以改为保留但排在干净节点后面。
+BAD_ASN_KEYWORDS = ["m247", "sharktech"]
+BAD_ASN_SOFT = ["colocrossing", "frantech", "buyvm", "psychz", "quadranet",
+                "serverpoint", "chorus", "vultr", "digitalocean", "linode", "akamai"]
+BAD_ASN_SOFT_PENALTY = 600    # 命中软黑名单的排序惩罚（ms），仍保留但排到后面
 
 # 纯净度策略：
 #   - BAD_ASN 命中 = 硬淘汰（真·重灾/蜜罐机房）
@@ -71,4 +79,8 @@ SINGBOX_OUTPUT_FILE = "singbox.json"
 ENABLE_URLTEST_GROUPS = True
 URLTEST_TOLERANCE = 500     # 仅当新节点快 500ms 以上才允许切 IP（防抖）
 URLTEST_INTERVAL = 600      # 10 分钟测一次
-URLTEST_URL = "https://www.gstatic.com/generate_204"
+
+# ★健康检查 URL：必须用国内可直连的端点。原 gstatic/google 在墙内不可达，
+#   会导致 Verge 里所有 url-test/fallback 组显示 Timeout（节点其实能用，是探测点连不上）。
+HEALTHCHECK_URL = "http://cp.cloudflare.com/generate_204"
+URLTEST_URL = HEALTHCHECK_URL
