@@ -1,0 +1,235 @@
+{
+  "log": {
+    "level": "info"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "local",
+        "address": "https://dns.alidns.com/dns-query",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "tag": "remote",
+        "address": "https://1.1.1.1/dns-query",
+        "strategy": "prefer_ipv4"
+      }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "geosite": "cn",
+        "server": "local"
+      },
+      {
+        "action": "route",
+        "server": "remote"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "in",
+      "listen": "127.0.0.1",
+      "port": 7890,
+      "sniff": true,
+      "sniff_override_destination": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🚀 节点选择 (锁定纯净地区)",
+      "outbounds": [
+        "🔒 🇭🇰 香港 (固定纯净IP)",
+        "⚡ 🇭🇰 香港 (防抖优选)",
+        "🔒 🇯🇵 日本-东京 (固定纯净IP)",
+        "⚡ 🇯🇵 日本-东京 (防抖优选)",
+        "🔒 🇰🇷 韩国-首尔 (固定纯净IP)",
+        "⚡ 🇰🇷 韩国-首尔 (防抖优选)",
+        "🔒 🇸🇬 新加坡 (固定纯净IP)",
+        "⚡ 🇸🇬 新加坡 (防抖优选)",
+        "direct"
+      ]
+    },
+    {
+      "tag": "🇭🇰 香港-01 [纯净机房|609ms]",
+      "server": "47.242.81.94",
+      "server_port": 52080,
+      "type": "vmess",
+      "uuid": "e47b9f77-60e4-4738-8d53-772b6002e146",
+      "security": "auto",
+      "alter_id": 0
+    },
+    {
+      "tag": "🇭🇰 香港-02 [纯净机房|816ms]",
+      "server": "156.239.224.107",
+      "server_port": 57278,
+      "type": "vmess",
+      "uuid": "1270bed5-f908-4ecc-f1c8-de246033b186",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "path": "/"
+      }
+    },
+    {
+      "tag": "🇭🇰 香港-03 [纯净机房|837ms]",
+      "server": "142.252.37.58",
+      "server_port": 6182,
+      "type": "http"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇭🇰 香港 (固定纯净IP)",
+      "outbounds": [
+        "🇭🇰 香港-01 [纯净机房|609ms]",
+        "🇭🇰 香港-02 [纯净机房|816ms]",
+        "🇭🇰 香港-03 [纯净机房|837ms]",
+        "direct"
+      ],
+      "default": "🇭🇰 香港-01 [纯净机房|609ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇭🇰 香港 (防抖优选)",
+      "outbounds": [
+        "🇭🇰 香港-01 [纯净机房|609ms]",
+        "🇭🇰 香港-02 [纯净机房|816ms]",
+        "🇭🇰 香港-03 [纯净机房|837ms]"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-01 [纯净机房|648ms]",
+      "server": "104.252.87.200",
+      "server_port": 9177,
+      "type": "http"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇯🇵 日本-东京 (固定纯净IP)",
+      "outbounds": [
+        "🇯🇵 日本-东京-01 [纯净机房|648ms]",
+        "direct"
+      ],
+      "default": "🇯🇵 日本-东京-01 [纯净机房|648ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇯🇵 日本-东京 (防抖优选)",
+      "outbounds": [
+        "🇯🇵 日本-东京-01 [纯净机房|648ms]"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇰🇷 韩国-首尔-01 [纯净机房|683ms]",
+      "server": "158.247.253.243",
+      "server_port": 443,
+      "type": "trojan",
+      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
+      "tls": {
+        "enabled": true
+      }
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇰🇷 韩国-首尔 (固定纯净IP)",
+      "outbounds": [
+        "🇰🇷 韩国-首尔-01 [纯净机房|683ms]",
+        "direct"
+      ],
+      "default": "🇰🇷 韩国-首尔-01 [纯净机房|683ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇰🇷 韩国-首尔 (防抖优选)",
+      "outbounds": [
+        "🇰🇷 韩国-首尔-01 [纯净机房|683ms]"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇸🇬 新加坡-01 [纯净机房|649ms]",
+      "server": "149.88.106.74",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇸🇬 新加坡-02 [纯净机房|716ms]",
+      "server": "149.88.106.73",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇸🇬 新加坡 (固定纯净IP)",
+      "outbounds": [
+        "🇸🇬 新加坡-01 [纯净机房|649ms]",
+        "🇸🇬 新加坡-02 [纯净机房|716ms]",
+        "direct"
+      ],
+      "default": "🇸🇬 新加坡-01 [纯净机房|649ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇸🇬 新加坡 (防抖优选)",
+      "outbounds": [
+        "🇸🇬 新加坡-01 [纯净机房|649ms]",
+        "🇸🇬 新加坡-02 [纯净机房|716ms]"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "domain_suffix": ".cn",
+        "outbound": "direct"
+      }
+    ],
+    "final": "🚀 节点选择 (锁定纯净地区)",
+    "auto_detect_interface": true
+  },
+  "route_rule_set": [],
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}
