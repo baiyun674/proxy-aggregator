@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 jobs:
   build-clean-sub:
@@ -78,6 +79,23 @@ jobs:
           git add -f mihomo_stable.yaml singbox.json subscription.b64 .nojekyll 2>/dev/null || true
           git commit -m "chore: 更新节点产物 $(date -u +%Y-%m-%dT%H:%M)Z" --allow-empty || true
           git push -f origin output
+
+      - name: 启用 GitHub Pages（output 分支）→ 提供一键订阅 URL
+        if: always()
+        run: |
+          set -e
+          API="https://api.github.com/repos/$GITHUB_REPOSITORY/pages"
+          HDR=(-H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json")
+          code=$(curl -s -o /dev/null -w "%{http_code}" "${HDR[@]}" "$API")
+          BODY='{"source":{"branch":"output","path":"/"},"build_type":"legacy"}'
+          if [ "$code" = "200" ]; then
+            echo "Pages 已启用，校正源分支为 output"
+            curl -s -X PATCH "${HDR[@]}" "$API" -d "$BODY" >/dev/null || true
+          else
+            echo "首次启用 Pages（源=output）"
+            curl -s -X POST "${HDR[@]}" "$API" -d "$BODY" || true
+          fi
+          echo "订阅 URL: https://$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]').github.io/$(echo $GITHUB_REPOSITORY | cut -d/ -f2)/mihomo_stable.yaml"
 
       - name: 上传本次产物为 Artifact（便于不推仓库时下载）
         uses: actions/upload-artifact@v4

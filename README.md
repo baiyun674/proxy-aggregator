@@ -12,7 +12,7 @@
 
 | 步 | 模块 | 作用 |
 |----|------|------|
-| 1 | `fetch_subscriptions` | 拉 6 个真实订阅源（Clash YAML / Base64 / 明文 URI） |
+| 1 | `fetch_subscriptions` | 拉 14 个真实订阅源（Clash YAML / Base64 / 明文 URI / v2rayNG profile） |
 | 2 | `parse_uri` | vmess / vless / trojan / ss / hysteria2 → Mihomo 字典，按 `server:port` 去重 |
 | 3 | `tcp_ping` | 高并发异步 TCP 握手初筛死活，解析出真实 server IP（`_tcp_ip`）与延迟 |
 | 4 | `pre_tag_region` + `select_candidates_with_asia_quota` | **★亚洲保底**：对 server IP 做轻量 GeoIP 标 region_hint，深测名额先按比例(默认 0.55)切一块保底给亚洲候选，剩余按全局延迟填充 |
@@ -58,20 +58,20 @@ python selftest.py              # 或 DRY_RUN=1 python aggregator.py
 
 1. 新建仓库，把本目录整体推上去（含 `.github/workflows/build.yml`）。
 2. 仓库 Settings → Actions → General → Workflow permissions 选 **Read and write**（脚本要 push `output` 分支）。
-3. 到 Actions 页面手动 Run workflow 一次验证；之后每 6 小时自动把最新产物推到 **`output` 分支**（`main` 永远是干净源码，本地 push 不再需要 rebase）。
-4. **Clash Verge 订阅（推荐方案：Public 仓库 + GitHub Pages）**
-   1. 仓库 Settings → Danger Zone → **Change to public**（本仓库无任何密钥，PAT 都不用了，源码本就公开，公开不泄露敏感信息）。
-   2. Settings → Pages → Source 选 **Deploy from a branch** → Branch 选 `output` / `root` → Save。
-   3. 在 Clash Verge Rev 订阅里粘贴：
-      `https://<你的用户名>.github.io/<仓库名>/mihomo_stable.yaml`
-      一键订阅、自动更新（Verge 按自己的更新周期重新拉，workflow 每 6h 刷新内容）。
-   - 不想公开仓库（保持 Private）时：Pages 免费版不可用，改用「**本地文件导入**」——从 Actions 每次运行的 Artifact 或带 token 的 raw 下载 `mihomo_stable.yaml`，在 Verge 里以 Local 方式导入（缺点：不能自动更新，每次跑完要重新下载导入）。
+3. 到 Actions 页面手动 Run workflow 一次验证；之后每 1.5 小时自动把最新产物推到 **`output` 分支**（`main` 永远是干净源码，本地 push 不再需要 rebase）。
+4. **Clash Verge 订阅（Public 仓库 + GitHub Pages，已自动化）**
+   1. 仓库需为 **Public**（本仓库无任何密钥，公开不泄露敏感信息；且 public 仓库 Actions 分钟数不限量，1.5h 高频刷新才跑得动）。
+   2. workflow 已含「启用 GitHub Pages」步骤：首次运行会自动把 Pages 源设为 `output` 分支（无需手动去 Settings 点）。若 API 权限被仓库级 Workflow permissions 限制，手动兜底：Settings → Pages → Source 选 **Deploy from a branch** → Branch 选 `output` / `root` → Save。
+   3. 在 Clash Verge Rev 订阅里粘贴（把用户名/仓库名换成你的）：
+      `https://baiyun674.github.io/proxy-aggregator/mihomo_stable.yaml`
+      一键订阅、自动更新（Verge 按自己的更新周期重新拉，workflow 每 1.5h 刷新内容；首次启用 Pages 后等 1~2 分钟构建完成才可访问）。
+   - 保持 Private 时：Pages 免费版不可用，改用「本地文件导入」——从 Actions 每次运行的 Artifact 或带 token 的 raw 下载 `mihomo_stable.yaml`，在 Verge 里以 Local 方式导入（缺点：不能自动更新）。
 
 ## 配置（全在 `config.py`）
 
 | 变量 | 含义 | 默认 |
 |------|------|------|
-| `SUB_URLS` | 订阅源列表，自己加 Raw 链接 | 6 个真实源 |
+| `SUB_URLS` | 订阅源列表，自己加 Raw 链接 | 14 个真实源（高星+日更筛选） |
 | `TARGET_REGIONS` | 国家/核心城市白名单 + 是否保留该国其它城市 | JP/SG/US/HK/TW/KR/DE/GB |
 | `ASIAN_COUNTRY_CODES` | 判定「亚洲保底」归属的国家码 | HK/TW/JP/KR/SG/TH/… |
 | `MAX_VERIFY_NODES` | 每轮深测上限（控 ip-api 免费额度） | 450 |
@@ -93,5 +93,5 @@ proxy-aggregator/
 ├── config.py                # 全部可配置项 + 真实订阅源（含 ASIA_MIN_RATIO / ENABLE_URLTEST_GROUPS）
 ├── selftest.py              # 离线自检（DRY_RUN）
 ├── requirements.txt         # aiohttp / PyYAML
-└── .github/workflows/build.yml   # 每 6h 自动跑，产物推到独立 output 分支（含 .nojekyll）
+└── .github/workflows/build.yml   # 每 1.5h 自动跑，产物推到独立 output 分支并自动启用 Pages（含 .nojekyll）
 ```
