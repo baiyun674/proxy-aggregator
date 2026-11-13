@@ -135,12 +135,15 @@ async def fetch_subscriptions(urls: List[str]) -> List[Dict[str, Any]]:
             try:
                 async with session.get(url, timeout=aiohttp.ClientTimeout(total=20)) as resp:
                     if resp.status != 200:
+                        print(f"[-] HTTP {resp.status} 失效链接: {url}")
                         continue
                     text = await resp.text()
+                    before = len(raw_nodes)
                     if "proxies:" in text:
                         data = yaml.safe_load(text)
-                        if isinstance(data, dict) and "proxies" in data:
+                        if isinstance(data, dict) and isinstance(data.get("proxies"), list):
                             raw_nodes.extend(data["proxies"])
+                            print(f"[+] YAML {len(raw_nodes)-before:5d} 节点  {url}")
                             continue
                     # 先剔除 profile 注释头(#profile-title / #subscription-userinfo 等)
                     # 再判断明文还是 Base64：只看前若干非注释行里有没有 "://"。
@@ -156,6 +159,7 @@ async def fetch_subscriptions(urls: List[str]) -> List[Dict[str, Any]]:
                         node = parse_uri(line)
                         if node:
                             raw_nodes.append(node)
+                    print(f"[+] URI {len(raw_nodes)-before:5d} 节点  {url}")
             except Exception as e:
                 print(f"[!] 拉取失败 {url}: {e}")
 

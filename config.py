@@ -13,8 +13,8 @@ SUB_URLS = [
     # Ripaojiedian 永久免费池（每日更新，Clash YAML + Base64 双源）
     "https://raw.githubusercontent.com/ripaojiedian/freenode/main/clash",
     "https://raw.githubusercontent.com/ripaojiedian/freenode/main/sub",
-    # aiboboxx V2Ray 免费池（长寿自动抓取，补 vmess/vless）
-    "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2",
+    # aiboboxx V2Ray 免费池 —— 原 /main/v2 已 404（per-URL 日志抓出），改用同仓 v2rayfree 主订阅
+    "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/sub",
     # V2RayAggregator 多源合并池（全网公开节点合并为 Clash）
     "https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge_yaml.yml",
 
@@ -42,6 +42,12 @@ SUB_URLS = [
     "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Splitted-By-Protocol/ss.txt",
     # TelegaVPN 专攻 VLESS-Reality/Hysteria2 精品池，Clash YAML ~56KB
     "https://raw.githubusercontent.com/TelegaVPN/free-vpn-keys/main/sub/clash/all.yaml",
+
+    # ===== 第三轮核对补充（Gemini 给的 Au1rxx 国家分片/Epodonios 分流均 404，未采纳；以下实测可用）=====
+    # yy1588133/proxy-pool（Clash YAML，实测 ~1016 节点，量大且直接可解析）
+    "https://raw.githubusercontent.com/yy1588133/proxy-pool/main/clash.yaml",
+    # Misaka-blog/chromego_merge（Clash Meta / Sing-box 优化合并，实测 ~129 节点）
+    "https://raw.githubusercontent.com/Misaka-blog/chromego_merge/main/sub/merged_proxies_new.yaml",
 ]
 
 # ============ 2. 常用国家与核心城市白名单 ============
