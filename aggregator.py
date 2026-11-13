@@ -30,16 +30,18 @@ import socket
 import time
 import subprocess
 import os
+import re
 from typing import List, Dict, Any, Tuple
 
 from config import (
     SUB_URLS, TARGET_REGIONS, ASIAN_COUNTRY_CODES, BAD_ASN_KEYWORDS,
+    SUB_MIRROR_FIRST,
     BAD_ASN_SOFT, BAD_ASN_SOFT_PENALTY,
     TCP_TIMEOUT, TUNNEL_TIMEOUT, MAX_VERIFY_NODES, ASIA_MIN_RATIO,
     BASE_LISTENER_PORT, CONCURRENCY_PING, CONCURRENCY_TUNNEL,
     GEOIP_FIELDS, OUTPUT_FILE, SINGBOX_OUTPUT_FILE,
     ENABLE_URLTEST_GROUPS, URLTEST_TOLERANCE, URLTEST_INTERVAL, URLTEST_URL, HEALTHCHECK_URL,
-    DROP_ON_PROXY_FLAG, PROXY_PENALTY, HOSTING_PENALTY,
+    DROP_ON_PROXY_FLAG, PROXY_PENALTY, HOSTING_PENALTY, FORCE_SKIP_CERT_VERIFY,
     DROP_PLAINTEXT_CDN_PORTS, PLAINTEXT_CDN_PORTS,
 )
 
@@ -128,40 +130,67 @@ def parse_uri(uri: str) -> Dict[str, Any]:
 
 
 # ================= 2. 拉取订阅 =================
+def _jsdelivr_mirror(url: str):
+    """raw.githubusercontent.com/OWNER/REPO/BRANCH/path -> cdn.jsdelivr.net/gh/OWNER/REPO@BRANCH/path
+    jsdelivr 在中国大陆直连可达，raw.githubusercontent 常被墙/超时。"""
+    m = re.match(r"https?://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([^/]+)/(.+)", url)
+    if m:
+        o, r, b, p = m.groups()
+        return f"https://cdn.jsdelivr.net/gh/{o}/{r}@{b}/{p}"
+    return None
+
+
+async def _fetch_text(session, url: str):
+    """按 SUB_MIRROR_FIRST 决定先走 jsdelivr 镜像还是原站；一个拿到 200 就返回。"""
+    mir = _jsdelivr_mirror(url)
+    order = ([mir, url] if (mir and SUB_MIRROR_FIRST) else [url, mir])
+    for cand in [c for c in order if c]:
+        try:
+            async with session.get(cand, timeout=aiohttp.ClientTimeout(total=20)) as resp:
+                if resp.status == 200:
+                    if cand != url:
+                        print(f"[mirror] 经 jsdelivr 取回: {url}")
+                    return await resp.text()
+                else:
+                    print(f"[-] HTTP {resp.status}  {cand}")
+        except Exception as e:
+            print(f"[!] 拉取异常 {cand}: {str(e)[:60]}")
+    return None
+
+
 async def fetch_subscriptions(urls: List[str]) -> List[Dict[str, Any]]:
     raw_nodes: List[Dict[str, Any]] = []
     async with aiohttp.ClientSession() as session:
         for url in urls:
+            text = await _fetch_text(session, url)
+            if text is None:
+                print(f"[-] 全部尝试失效: {url}")
+                continue
             try:
-                async with session.get(url, timeout=aiohttp.ClientTimeout(total=20)) as resp:
-                    if resp.status != 200:
-                        print(f"[-] HTTP {resp.status} 失效链接: {url}")
+                before = len(raw_nodes)
+                if "proxies:" in text:
+                    data = yaml.safe_load(text)
+                    if isinstance(data, dict) and isinstance(data.get("proxies"), list):
+                        raw_nodes.extend(data["proxies"])
+                        print(f"[+] YAML {len(raw_nodes)-before:5d} 节点  {url}")
                         continue
-                    text = await resp.text()
-                    before = len(raw_nodes)
-                    if "proxies:" in text:
-                        data = yaml.safe_load(text)
-                        if isinstance(data, dict) and isinstance(data.get("proxies"), list):
-                            raw_nodes.extend(data["proxies"])
-                            print(f"[+] YAML {len(raw_nodes)-before:5d} 节点  {url}")
-                            continue
-                    # 先剔除 profile 注释头(#profile-title / #subscription-userinfo 等)
-                    # 再判断明文还是 Base64：只看前若干非注释行里有没有 "://"。
-                    # （旧写法 text[:30] 会被这些 # 头骗到，把明文当 Base64 解码 → 几乎全丢）
-                    head_lines = [l for l in text.splitlines()
-                                  if l.strip() and not l.lstrip().startswith("#")]
-                    head = "\n".join(head_lines[:3])
-                    if "://" in head:
-                        decoded = text
-                    else:
-                        decoded = safe_b64decode(text)
-                    for line in decoded.splitlines():
-                        node = parse_uri(line)
-                        if node:
-                            raw_nodes.append(node)
-                    print(f"[+] URI {len(raw_nodes)-before:5d} 节点  {url}")
+                # 先剔除 profile 注释头(#profile-title / #subscription-userinfo 等)
+                # 再判断明文还是 Base64：只看前若干非注释行里有没有 "://"。
+                # （旧写法 text[:30] 会被这些 # 头骗到，把明文当 Base64 解码 → 几乎全丢）
+                head_lines = [l for l in text.splitlines()
+                              if l.strip() and not l.lstrip().startswith("#")]
+                head = "\n".join(head_lines[:3])
+                if "://" in head:
+                    decoded = text
+                else:
+                    decoded = safe_b64decode(text)
+                for line in decoded.splitlines():
+                    node = parse_uri(line)
+                    if node:
+                        raw_nodes.append(node)
+                print(f"[+] URI {len(raw_nodes)-before:5d} 节点  {url}")
             except Exception as e:
-                print(f"[!] 拉取失败 {url}: {e}")
+                print(f"[!] 解析失败 {url}: {e}")
 
     unique: Dict[str, Dict[str, Any]] = {}
     for n in raw_nodes:
@@ -269,8 +298,11 @@ def select_candidates_with_asia_quota(alive: List[Dict[str, Any]],
 
 # ================= 6. Mihomo 隧道深测 =================
 def _resolve_mihomo_bin() -> str:
-    for c in ("./mihomo", "mihomo", "./mihomo.exe"):
-        if os.path.exists(c) or c == "mihomo":
+    # 本地(Windows)优先找当前目录的 mihomo.exe，CI(Linux) 用 PATH 上的 mihomo。
+    # 原写法 `or c == "mihomo"` 会在 Windows 上直接返回 PATH 上并不存在的 "mihomo"
+    # → subprocess 静默失败 → 隧道深测 0 通过。改为按存在性判定。
+    for c in ("./mihomo.exe", "mihomo.exe", "./mihomo", "mihomo"):
+        if os.path.exists(c):
             return c
     return "mihomo"
 
@@ -318,7 +350,9 @@ async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[
 
     temp_cfg = {
         "allow-lan": False, "log-level": "silent",
-        "dns": {"enable": True, "nameserver": ["8.8.8.8", "1.1.1.1"]},
+        # DNS 用国内可直连的公共解析(阿里/DNSPod)，墙内本地跑时 8.8.8.8 会被污染/超时；
+        # 这两个在美国 runner 上同样可用，不影响 CI。
+        "dns": {"enable": True, "nameserver": ["223.5.5.5", "119.29.29.29"]},
         "proxies": temp_proxies, "listeners": listeners,
     }
     with open("temp_mihomo.yaml", "w", encoding="utf-8") as f:
@@ -410,6 +444,13 @@ def build_mihomo_config(grouped: Dict[str, List[Dict[str, Any]]], output_file: s
         proxy_names = []
         for idx, node in enumerate(nodes, 1):
             clean = {k: v for k, v in node.items() if not k.startswith("_")}
+            # ★强制跳过证书校验：免费节点几乎全是自签/过期证书，不跳过则 TLS 节点全握手失败。
+            #   Reality(有 public-key 校验，不依赖 CA) 除外；hysteria2 用 skip-cert-verify。
+            if FORCE_SKIP_CERT_VERIFY:
+                is_reality = "reality-opts" in clean
+                needs_noverify = bool(clean.get("tls")) or clean.get("type") == "hysteria2"
+                if needs_noverify and not is_reality:
+                    clean["skip-cert-verify"] = True
             name = f"{group_title}-{idx:02d} [{node['_purity_tag']}|{node['_rtt_ms']}ms]"
             clean["name"] = name
             final_proxies.append(clean)
@@ -463,6 +504,8 @@ def mihomo_to_singbox(node: Dict[str, Any], tag: str) -> Dict[str, Any]:
         ob["alter_id"] = int(n.get("alterId", 0))
         tls = {"enabled": bool(n.get("tls"))}
         if n.get("servername"): tls["server_name"] = n["servername"]
+        if tls["enabled"] and (FORCE_SKIP_CERT_VERIFY or n.get("skip-cert-verify")):
+            tls["insecure"] = True
         if tls["enabled"]: ob["tls"] = tls
         if n.get("network") == "ws":
             ws = n.get("ws-opts", {}) or {}
@@ -483,6 +526,8 @@ def mihomo_to_singbox(node: Dict[str, Any], tag: str) -> Dict[str, Any]:
                 tls["reality"] = {"enabled": True,
                                   "public_key": ro.get("public-key", ""),
                                   "short_id": ro.get("short-id", "")}
+            elif FORCE_SKIP_CERT_VERIFY or n.get("skip-cert-verify"):
+                tls["insecure"] = True
             ob["tls"] = tls
         if n.get("network") in ("ws", "grpc"):
             transport = {"type": n["network"]}
@@ -497,7 +542,7 @@ def mihomo_to_singbox(node: Dict[str, Any], tag: str) -> Dict[str, Any]:
         ob["password"] = n.get("password")
         tls = {"enabled": True}
         if n.get("servername"): tls["server_name"] = n["servername"]
-        if n.get("skip-cert-verify"): tls["insecure"] = True
+        if FORCE_SKIP_CERT_VERIFY or n.get("skip-cert-verify"): tls["insecure"] = True
         ob["tls"] = tls
 
     elif t == "ss":
@@ -510,7 +555,7 @@ def mihomo_to_singbox(node: Dict[str, Any], tag: str) -> Dict[str, Any]:
         ob["password"] = n.get("password")
         tls = {"enabled": True}
         if n.get("sni"): tls["server_name"] = n["sni"]
-        if n.get("skip-cert-verify"): tls["insecure"] = True
+        if FORCE_SKIP_CERT_VERIFY or n.get("skip-cert-verify"): tls["insecure"] = True
         ob["tls"] = tls
 
     else:

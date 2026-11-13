@@ -2,6 +2,9 @@
 """项目配置：订阅源 / 地区白名单 / 名额与超时。改这里即可，无需动 aggregator.py。"""
 
 # ============ 1. 真实 GitHub 免费聚合订阅源（来自对话整理） ============
+# ★本地(墙内)运行置 True：raw.githubusercontent 在国内常超时，优先走 jsdelivr 镜像。
+#   GitHub Actions(美国) 两种都可达，置 True 也无妨。
+SUB_MIRROR_FIRST = True
 SUB_URLS = [
     # Au1rxx 聚合池（每小时 sing-box 实测真连接后发布，存活率高）
     "https://raw.githubusercontent.com/Au1rxx/free-vpn-subscriptions/main/output/clash.yaml",
@@ -89,6 +92,11 @@ BAD_ASN_SOFT_PENALTY = 600    # 命中软黑名单的排序惩罚（ms），仍�
 #     （设 DROP_ON_PROXY_FLAG=True 才硬丢，会大幅减少产量，一般别开）
 #   - hosting（数据中心 IP）= 降权保留，原生 ISP 优先
 DROP_ON_PROXY_FLAG = False
+# ★自签证书：免费节点证书绝大多数自签/过期/域名不匹配（源链接常不带 insecure=1，
+#   parse 时不会补 skip-cert-verify）→ Mihomo/Verge 严格校验证书 → TLS 节点全部握手失败
+#   报 error/timeout。这是 Verge「基本全红」的头号可控原因（真实当前日期已核=2026-11，
+#   非时钟问题）。设 True 则给所有 TLS 节点(除 Reality)强制加 skip-cert-verify/insecure。
+FORCE_SKIP_CERT_VERIFY = True
 PROXY_PENALTY = 120         # 命中 proxy 标志的排序惩罚（ms）
 HOSTING_PENALTY = 150       # 数据中心 IP 的排序惩罚（ms），原生 ISP 加 0
 

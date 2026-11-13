@@ -30,3 +30,10 @@ fetch_gemini.ps1
 *.ps1
 gem_*.html
 gem_*.txt
+
+# 本地调试产物（墙内自筛/证书探针临时文件）
+cache.db
+cert_probe.yaml
+temp_mihomo_dbg.yaml
+test_skip*.yaml
+reach_test.py
