@@ -25,3 +25,8 @@ singbox.json
 Thumbs.db
 .idea/
 .vscode/
+
+fetch_gemini.ps1
+*.ps1
+gem_*.html
+gem_*.txt

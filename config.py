@@ -33,6 +33,15 @@ SUB_URLS = [
     "https://raw.githubusercontent.com/anaer/Sub/main/clash.yaml",
     # 0xRadikal/Free-v2ray-Configs（844★，每日更新，v2rayNG profile Base64，量大）
     "https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt",
+
+    # ===== 协议提纯大源（VLESS/Trojan/SS 快协议，提质用，2026 实测 URL 可达）=====
+    # barry-far/V2ray-Config 按协议分流库：只抽快协议专库，避开大杂烩慢 vmess 池
+    # vless.txt ~1.75MB（大量 VLESS-Reality）、trojan.txt ~152KB、ss.txt ~172KB
+    "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Splitted-By-Protocol/vless.txt",
+    "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Splitted-By-Protocol/trojan.txt",
+    "https://raw.githubusercontent.com/barry-far/V2ray-Config/main/Splitted-By-Protocol/ss.txt",
+    # TelegaVPN 专攻 VLESS-Reality/Hysteria2 精品池，Clash YAML ~56KB
+    "https://raw.githubusercontent.com/TelegaVPN/free-vpn-keys/main/sub/clash/all.yaml",
 ]
 
 # ============ 2. 常用国家与核心城市白名单 ============
@@ -76,6 +85,14 @@ BAD_ASN_SOFT_PENALTY = 600    # 命中软黑名单的排序惩罚（ms），仍�
 DROP_ON_PROXY_FLAG = False
 PROXY_PENALTY = 120         # 命中 proxy 标志的排序惩罚（ms）
 HOSTING_PENALTY = 150       # 数据中心 IP 的排序惩罚（ms），原生 ISP 加 0
+
+# ★明文 CDN 端口黑名单：挂在 Cloudflare 80 系明文端口上的 vmess/ss 节点，
+#   通常被限速到 ~100KB/s 且晚高峰必炸，是「质量不高」的主要来源。
+#   在送入隧道深测「之前」直接剔除，省下深测名额给快协议(443/Hy2/Reality)节点。
+#   注意：只拉黑 CF 的明文(http)端口 80/8080/2052/2082/2086/2095；CF 的 https 端口
+#   (443/8443/2053/2083/2087/2096) 不在名单内，那是 trojan/vless-over-cdn 的正常端口。
+DROP_PLAINTEXT_CDN_PORTS = True
+PLAINTEXT_CDN_PORTS = (80, 8080, 2052, 2082, 2086, 2095)
 
 # ============ 3. 测速 / 深测参数 ============
 TCP_TIMEOUT = 2.0           # TCP 握手初筛超时（秒）

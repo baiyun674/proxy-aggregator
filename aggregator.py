@@ -40,6 +40,7 @@ from config import (
     GEOIP_FIELDS, OUTPUT_FILE, SINGBOX_OUTPUT_FILE,
     ENABLE_URLTEST_GROUPS, URLTEST_TOLERANCE, URLTEST_INTERVAL, URLTEST_URL, HEALTHCHECK_URL,
     DROP_ON_PROXY_FLAG, PROXY_PENALTY, HOSTING_PENALTY,
+    DROP_PLAINTEXT_CDN_PORTS, PLAINTEXT_CDN_PORTS,
 )
 
 
@@ -141,7 +142,16 @@ async def fetch_subscriptions(urls: List[str]) -> List[Dict[str, Any]]:
                         if isinstance(data, dict) and "proxies" in data:
                             raw_nodes.extend(data["proxies"])
                             continue
-                    decoded = safe_b64decode(text) if "://" not in text[:30] else text
+                    # 先剔除 profile 注释头(#profile-title / #subscription-userinfo 等)
+                    # 再判断明文还是 Base64：只看前若干非注释行里有没有 "://"。
+                    # （旧写法 text[:30] 会被这些 # 头骗到，把明文当 Base64 解码 → 几乎全丢）
+                    head_lines = [l for l in text.splitlines()
+                                  if l.strip() and not l.lstrip().startswith("#")]
+                    head = "\n".join(head_lines[:3])
+                    if "://" in head:
+                        decoded = text
+                    else:
+                        decoded = safe_b64decode(text)
                     for line in decoded.splitlines():
                         node = parse_uri(line)
                         if node:
@@ -281,6 +291,15 @@ async def probe_node_via_tunnel(node: Dict[str, Any], local_port: int, sem: asyn
 
 
 async def verify_exit_and_purity(alive: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+    # ★深测前剔除明文 CDN 端口(80/8080/...)节点：CF 明文反代被限速且晚高峰必炸，
+    #   提前一刀切，把隧道名额让给 443/Hy2/Reality 快协议。仅作用于候选选拔，
+    #   不改变亚洲保底(region_hint)逻辑；只保留走 https/TLS/QUIC 端口的节点。
+    if DROP_PLAINTEXT_CDN_PORTS:
+        before = len(alive)
+        alive = [n for n in alive if int(n.get("port", 0) or 0) not in PLAINTEXT_CDN_PORTS]
+        print(f"[端口黑名单] 明文CDN端口剔除 {before}→{len(alive)} "
+              f"(丢弃 {before-len(alive)} 个 {PLAINTEXT_CDN_PORTS})")
+
     candidates = select_candidates_with_asia_quota(alive, MAX_VERIFY_NODES, ASIA_MIN_RATIO)
     if not candidates:
         return {}
