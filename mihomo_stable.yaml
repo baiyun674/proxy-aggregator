@@ -14,29 +14,40 @@ dns:
   - https://1.1.1.1/dns-query
   - https://dns.google/dns-query
 proxies:
-- name: 🇭🇰 香港-01 [纯净机房|828ms]
-  password: '12012'
-  port: 12012
-  server: 47.242.93.89
+- alpn:
+  - ''
+  alterId: 0
+  cipher: auto
+  http-opts:
+    headers:
+      Host:
+      - openai.com
+    method: GET
+    path:
+    - /QQqun-737805443
+  name: 🇭🇰 香港-01 [纯净机房|546ms]
+  network: http
+  port: 52080
+  server: 47.242.81.94
   skip-cert-verify: true
-  sni: ali-hk.b-gfw.cfd
-  type: trojan
+  tls: false
+  type: vmess
   udp: true
-- name: 🇭🇰 香港-02 [纯净机房|868ms]
-  server: 8.217.1.203
-  port: 8443
-  type: vless
-  uuid: 8b17beac-b143-447d-aa68-14cbb121a602
-  tls: true
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: 74P0QFvaK6B13rHsxR_t0lqRlg4YLuORD4VaHr5Jd38
-    short-id: 0bf55f64
-  servername: www.apple.com
-  client-fingerprint: chrome
-  network: tcp
+  uuid: e47b9f77-60e4-4738-8d53-772b6002e146
+- type: vmess
+  name: 🇭🇰 香港-02 [纯净机房|543ms]
+  server: 47.244.120.197
+  port: 44867
+  uuid: 845e6b08-2919-4290-ade0-5dc7dcea59ca
+  cipher: auto
+  alterId: 0
   udp: true
-- name: 🇭🇰 香港-03 [纯净机房|894ms]
+  tls: false
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /arki?ed=2048
+- name: 🇭🇰 香港-03 [纯净机房|701ms]
   type: vless
   server: 2.26.204.46
   port: 31001
@@ -49,31 +60,8 @@ proxies:
   reality-opts:
     public-key: lzpIiMqHXas_qayw-HvrySb78FNkVroBOqniwqPXPzY
     short-id: 39793bc4708abbbb
-- name: 🇭🇰 香港-04 [原生ISP|1067ms]
-  password: ''
-  port: 8443
-  server: 38.76.140.254
-  skip-cert-verify: true
-  tls: true
-  type: http
-  username: ''
-  udp: true
-- cipher: aes-256-gcm
-  name: 🇭🇰 香港-05 [原生ISP|1383ms]
-  password: AMok40FfaM+Ikwre16psBpVk6JHxsQZw
-  port: 8388
-  server: 209.248.57.105
-  type: ss
-- name: 🇭🇰 香港-06 [纯净机房|1237ms]
-  password: pLBgZ2mOWDopvTI6CUWu5ZkI
-  port: 31003
-  server: 2.26.204.46
-  sub_tag: R002-260618
-  type: socks5
-  username: socks
-  udp: true
 - type: vmess
-  name: 🇭🇰 香港-07 [原生ISP|1488ms]
+  name: 🇭🇰 香港-04 [原生ISP|757ms]
   server: 156.245.232.239
   port: 35043
   uuid: b15e481d-17e4-41a8-84c2-23d4f0514d9a
@@ -85,23 +73,74 @@ proxies:
   network: ws
   ws-opts:
     path: /
-- alterId: 0
-  cipher: auto
-  name: 🇭🇰 香港-08 [纯净机房|4403ms]
-  network: ws
-  port: 23026
-  server: 47.244.120.197
-  skip-cert-verify: true
-  tls: false
-  type: vmess
-  udp: true
-  uuid: b9de1bc9-baa7-41ac-86f7-ccd59695cb21
-  ws-opts:
-    headers:
-      Host: 47.244.120.197
-    path: /arki
 - type: vmess
-  name: 🇭🇰 香港-09 [纯净机房|4913ms]
+  name: 🇭🇰 香港-05 [原生ISP|955ms]
+  server: dog-hk.kunlun01dns.com
+  port: 21041
+  uuid: 9464ca40-dd75-3742-a628-d931a9f413b2
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: true
+- type: vmess
+  name: 🇭🇰 香港-06 [纯净机房|698ms]
+  server: 47.244.120.197
+  port: 23026
+  uuid: b9de1bc9-baa7-41ac-86f7-ccd59695cb21
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /arki
+- name: 🇭🇰 香港-07 [原生ISP|1034ms]
+  password: ''
+  port: 8443
+  server: 38.76.140.254
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: ''
+  udp: true
+- type: vmess
+  name: 🇭🇰 香港-08 [纯净机房|1106ms]
+  server: 47.244.120.197
+  port: 36703
+  uuid: 45b83519-9c4f-4052-a11b-02e017b636d4
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /arki
+- name: 🇭🇰 香港-09 [纯净机房|1227ms]
+  password: pLBgZ2mOWDopvTI6CUWu5ZkI
+  port: 31003
+  server: 2.26.204.46
+  sub_tag: R002-260618
+  type: socks5
+  username: socks
+  udp: true
+- name: 🇭🇰 香港-10 [纯净机房|1337ms]
+  type: vless
+  server: 8.217.1.203
+  port: 8443
+  udp: true
+  uuid: 8b17beac-b143-447d-aa68-14cbb121a602
+  tls: true
+  servername: www.apple.com
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  reality-opts:
+    public-key: 74P0QFvaK6B13rHsxR_t0lqRlg4YLuORD4VaHr5Jd38
+    short-id: 0bf55f64
+- type: vmess
+  name: 🇭🇰 香港-11 [纯净机房|1453ms]
   server: 156.239.224.107
   port: 57278
   uuid: 1270bed5-f908-4ecc-f1c8-de246033b186
@@ -113,50 +152,47 @@ proxies:
   network: ws
   ws-opts:
     path: /
-- name: 🇭🇰 香港-其他-01 [原生ISP|1118ms]
-  type: http
-  server: 202.85.53.25
-  port: 443
-  tls: true
+- type: vmess
+  name: 🇭🇰 香港-其他-01 [原生ISP|134ms]
+  server: 206.237.11.17
+  port: 50376
+  uuid: 9091fd64-7e8e-4b7a-8ae7-84474f234926
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
   skip-cert-verify: true
-- name: 🇭🇰 香港-其他-02 [原生ISP|1165ms]
-  type: http
+- name: 🇭🇰 香港-其他-02 [原生ISP|1226ms]
+  password: 'null'
+  port: 443
   server: fan.240104.xyz
-  port: 443
-  tls: true
   sni: fan.240104.xyz
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
   skip-cert-verify: true
-- name: 🇯🇵 日本-东京-01 [纯净机房|508ms]
+- name: 🇯🇵 日本-东京-01 [纯净机房|399ms]
   type: vless
   server: 168.110.21.56
   port: 18453
   udp: true
   uuid: 1751bebc-1bf1-420c-8b9d-97157aad179b
   tls: false
-- name: 🇯🇵 日本-东京-02 [纯净机房|509ms]
+- name: 🇯🇵 日本-东京-02 [纯净机房|434ms]
   server: 168.138.205.100
   port: 53758
   type: ss
   cipher: aes-128-gcm
   password: Bwlqh7GcFB
-- name: 🇯🇵 日本-东京-03 [纯净机房|577ms]
+- name: 🇯🇵 日本-东京-03 [纯净机房|525ms]
   server: jpa.123069.xyz
   port: 53758
   type: ss
   cipher: aes-128-gcm
   password: Bwlqh7GcFB
-- name: 🇯🇵 日本-东京-04 [纯净机房|663ms]
-  type: vless
-  server: 155.248.175.201
-  port: 23169
-  udp: true
-  uuid: 7318caa1-93d1-4a9d-c481-504599902700
-  tls: true
-  servername: djj.zjlo.top
-  client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  skip-cert-verify: true
-- name: 🇯🇵 日本-东京-05 [纯净机房|685ms]
+- name: 🇯🇵 日本-东京-04 [纯净机房|545ms]
   type: vless
   server: 158.101.151.157
   port: 443
@@ -170,7 +206,7 @@ proxies:
     public-key: 99eQkMBHqOEKororOWKFlmH8M0o9VaVpV9w1vQIxhz8
     short-id: 684c7531e599dec0
 - type: vmess
-  name: 🇯🇵 日本-东京-06 [纯净机房|686ms]
+  name: 🇯🇵 日本-东京-05 [纯净机房|546ms]
   server: 168.110.63.247
   port: 8081
   uuid: c3bde296-8e44-4b8c-a325-577d5b3cc7c8
@@ -182,67 +218,20 @@ proxies:
   network: ws
   ws-opts:
     path: /vless
-- name: 🇯🇵 日本-东京-07 [纯净机房|677ms]
-  type: vless
-  server: 103.75.118.228
-  port: 11452
-  udp: true
-  uuid: 814bd064-544d-4255-a070-5705c03f6da9
-  tls: true
-  servername: www.apple.com
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: k2hPp0tTW0Da-HK94wYpSCLbuK44LfGqC2MSJIM1Ti0
-    short-id: 48050fab
-- name: 🇯🇵 日本-东京-08 [纯净机房|681ms]
-  type: vless
-  server: 103.75.118.228
-  port: 12683
-  udp: true
-  uuid: 814bd064-544d-4255-a070-5705c03f6da9
-  tls: true
-  servername: www.apple.com
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: k2hPp0tTW0Da-HK94wYpSCLbuK44LfGqC2MSJIM1Ti0
-    short-id: 48050fab
-- name: 🇯🇵 日本-东京-09 [原生ISP|889ms]
-  type: http
-  server: fan.571589.xyz
+- name: 🇯🇵 日本-东京-06 [纯净机房|492ms]
+  server: 84.247.155.196
   port: 443
-  username: 'null'
-  password: 'null'
-  tls: true
-  skip-cert-verify: true
-- name: 🇯🇵 日本-东京-10 [原生ISP|920ms]
-  type: http
-  server: fan.587475.xyz
-  port: 443
-  tls: true
-  sni: fan.587475.xyz
-  skip-cert-verify: true
-- name: 🇯🇵 日本-东京-11 [纯净机房|823ms]
-  type: socks5
-  server: 101.36.104.239
-  port: 10808
-- client-fingerprint: firefox
-  flow: xtls-rprx-vision
-  name: 🇯🇵 日本-东京-12 [纯净机房|951ms]
-  network: tcp
-  port: 43149
-  reality-opts:
-    public-key: cvong7paE8XIzzbKWgV5iUruP1pBqI2IhMuBHc8c0UE
-    short-id: 15aa0ad4
-  server: zfapi.zalolink.com
-  servername: psstatic.cdn.bcebos.com
-  tls: true
-  type: vless
+  type: ss
+  cipher: aes-256-gcm
+  password: 3eOFeNssde7PYYMv
+- cipher: aes-256-gcm
+  name: 🇯🇵 日本-东京-07 [原生ISP|651ms]
+  password: BeaUf9c0AEWH40Pu
+  port: 8388
+  server: 154.36.158.197
+  type: ss
   udp: true
-  uuid: 57beeeb0-03fc-4fc9-94da-7604488a7134
-  x-toolall-mihomo: true
-- name: 🇯🇵 日本-东京-13 [纯净机房|1745ms]
+- name: 🇯🇵 日本-东京-08 [纯净机房|548ms]
   type: hysteria2
   server: 8.209.247.109
   port: 443
@@ -250,46 +239,28 @@ proxies:
   password: usqmqUKJFIlCmvkCNSY64L3k
   sni: bing.com
   skip-cert-verify: true
-- cipher: aes-256-gcm
-  name: 🇯🇵 日本-东京-14 [原生ISP|1996ms]
-  password: BeaUf9c0AEWH40Pu
-  port: 8388
-  server: 154.36.158.197
-  type: ss
-  udp: true
-- name: 🇯🇵 日本-东京-15 [纯净机房|1882ms]
-  type: vless
-  network: ws
-  server: 104.16.10.72
+- name: 🇯🇵 日本-东京-09 [原生ISP|772ms]
+  password: ''
   port: 443
-  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
-  servername: jp3.yohototo.top
+  server: fan.571589.xyz
   skip-cert-verify: true
+  sni: fan.571589.xyz
   tls: true
+  type: http
   udp: true
-  tfo: false
-  client-fingerprint: unsafe
-  ws-opts:
-    headers:
-      Host: jp3.yohototo.top
-    path: /tyxyws
-- client-fingerprint: unsafe
-  encryption: none
-  name: 🇯🇵 日本-东京-16 [纯净机房|1927ms]
-  network: ws
+  username: ''
+  x-toolall-mihomo: true
+- name: 🇯🇵 日本-东京-10 [原生ISP|821ms]
   port: 443
-  server: 45.153.245.181
-  servername: jp3.yohototo.top
+  server: fan.587475.xyz
+  sub_tag: R002-260618
   tls: true
-  type: vless
-  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
-  ws-opts:
-    headers:
-      Host: jp3.yohototo.top
-    path: /tyxyws
+  type: http
+  udp: true
+  sni: fan.587475.xyz
   skip-cert-verify: true
 - type: vless
-  name: 🇯🇵 日本-东京-17 [纯净机房|2322ms]
+  name: 🇯🇵 日本-东京-11 [纯净机房|771ms]
   server: 43.170.8.95
   port: 443
   uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
@@ -304,18 +275,52 @@ proxies:
     path: /tyxyws
     headers:
       Host: jp3.yohototo.top
-- name: 🇯🇵 日本-东京-18 [纯净机房|7113ms]
-  type: vless
-  server: djj.zjlo.top
-  port: 23169
+- type: vless
+  name: 🇯🇵 日本-东京-12 [纯净机房|946ms]
+  server: 103.201.131.202
+  port: 2053
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
   udp: true
-  uuid: 3eb053cb-d6f8-4b31-8180-222e1cc6f8ff
   tls: true
-  servername: djj.zjlo.top
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
+  servername: jp3.yohototo.top
+  sni: jp3.yohototo.top
   skip-cert-verify: true
-- name: 🇯🇵 日本-大阪-01 [原生ISP|1108ms]
+  network: ws
+  ws-opts:
+    path: /tyxyws
+    headers:
+      Host: jp3.yohototo.top
+- client-fingerprint: firefox
+  encryption: none
+  name: 🇯🇵 日本-东京-13 [纯净机房|1616ms]
+  network: ws
+  port: 443
+  server: 104.21.70.228
+  servername: jp3.yohototo.top
+  skip-cert-verify: true
+  tls: true
+  type: vless
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
+  ws-opts:
+    headers:
+      Host: jp3.yohototo.top
+    path: /tyxyws
+- client-fingerprint: unsafe
+  encryption: none
+  name: 🇯🇵 日本-东京-14 [纯净机房|4387ms]
+  network: ws
+  port: 443
+  server: 45.153.245.181
+  servername: jp3.yohototo.top
+  tls: true
+  type: vless
+  uuid: 4e4f1f70-5e56-4a76-bb9d-db087f4690c4
+  ws-opts:
+    headers:
+      Host: jp3.yohototo.top
+    path: /tyxyws
+  skip-cert-verify: true
+- name: 🇯🇵 日本-大阪-01 [原生ISP|657ms]
   password: None
   port: 343
   server: 133.18.200.207
@@ -324,7 +329,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇰🇷 韩国-首尔-01 [原生ISP|709ms]
+- name: 🇰🇷 韩国-首尔-01 [原生ISP|607ms]
   cipher: aes-256-cfb
   password: qwerREWQ@@
   port: 4652
@@ -332,43 +337,67 @@ proxies:
   sub_tag: A004-260618
   type: ss
   udp: true
-- name: 🇰🇷 韩国-首尔-02 [纯净机房|719ms]
+- name: 🇰🇷 韩国-首尔-02 [纯净机房|796ms]
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   port: 443
   server: 158.247.253.243
   skip-cert-verify: true
   sni: connectgraduateswithjobopeningsandgrowprofessionally.com
   type: trojan
-- name: 🇰🇷 韩国-首尔-03 [原生ISP|839ms]
+- name: 🇰🇷 韩国-首尔-03 [原生ISP|4000ms]
   server: p141.panda001.net
   port: 4652
   type: ss
   cipher: aes-256-cfb
   password: qwerREWQ@@
-- cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-01 [纯净机房|705ms]
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 149.88.106.74
-  type: ss
-- name: 🇸🇬 新加坡-02 [纯净机房|707ms]
-  server: 149.88.106.73
-  port: 19999
-  type: ss
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
 - type: vmess
-  name: 🇸🇬 新加坡-03 [纯净机房|684ms]
-  server: 149.88.23.207
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+  name: 🇰🇷 韩国-首尔-04 [纯净机房|4577ms]
+  server: 140.238.2.250
+  port: 443
+  uuid: 41a7089a-040b-4538-8b8d-010902405bde
   cipher: auto
   alterId: 0
   udp: true
   tls: false
   skip-cert-verify: true
+- cipher: aes-256-gcm
+  name: 🇸🇬 新加坡-01 [纯净机房|605ms]
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 149.88.106.74
+  type: ss
+- name: 🇸🇬 新加坡-02 [纯净机房|613ms]
+  server: 149.88.106.73
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+- cipher: aes-256-gcm
+  name: 🇸🇬 新加坡-03 [纯净机房|595ms]
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 149.88.107.47
+  type: ss
+- cipher: aes-256-gcm
+  name: 🇸🇬 新加坡-04 [纯净机房|601ms]
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 51.79.228.131
+  type: ss
+- cipher: aes-256-gcm
+  name: 🇸🇬 新加坡-05 [纯净机房|602ms]
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 15.235.164.133
+  type: ss
+- cipher: aes-256-gcm
+  name: 🇸🇬 新加坡-06 [纯净机房|603ms]
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+  port: 19999
+  server: 149.88.107.74
+  type: ss
 - type: vmess
-  name: 🇸🇬 新加坡-04 [纯净机房|697ms]
+  name: 🇸🇬 新加坡-07 [纯净机房|606ms]
   server: 149.88.23.202
   port: 18000
   uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
@@ -378,53 +407,19 @@ proxies:
   tls: false
   skip-cert-verify: true
 - cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-05 [纯净机房|699ms]
+  name: 🇸🇬 新加坡-08 [纯净机房|630ms]
   password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
   port: 19999
   server: 15.235.182.183
   type: ss
-- cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-06 [纯净机房|701ms]
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 51.79.228.131
-  type: ss
-- cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-07 [纯净机房|702ms]
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 149.88.107.74
-  type: ss
-- cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-08 [纯净机房|705ms]
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 15.235.164.133
-  type: ss
-- cipher: aes-256-gcm
-  name: 🇸🇬 新加坡-09 [纯净机房|706ms]
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-  port: 19999
-  server: 149.88.107.47
-  type: ss
-- type: vmess
-  name: 🇸🇬 新加坡-10 [纯净机房|761ms]
-  server: ww11.levikogjgfdd.ir
-  port: 18000
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-  cipher: auto
-  alterId: 0
-  udp: true
-  tls: false
-  skip-cert-verify: true
-- name: 🇸🇬 新加坡-11 [纯净机房|949ms]
+- name: 🇸🇬 新加坡-09 [纯净机房|777ms]
   password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   port: 443
   server: 15.235.184.127
   skip-cert-verify: false
   sni: exploredigitaljobplatformandfindonlinework.com
   type: trojan
-- name: 🇸🇬 新加坡-12 [原生ISP|1156ms]
+- name: 🇸🇬 新加坡-10 [原生ISP|975ms]
   password: ''
   port: 9443
   server: 149.88.99.209
@@ -434,18 +429,36 @@ proxies:
   udp: true
   username: ''
   x-toolall-mihomo: true
-- name: 🇸🇬 新加坡-13 [纯净机房|925ms]
-  type: vmess
-  server: 15.235.144.92
-  port: 1270
-  uuid: 5c040f1d-45db-43bd-8d46-e4950e433735
-  alterId: 0
-  cipher: auto
+- type: trojan
+  name: 🇸🇬 新加坡-11 [原生ISP|877ms]
+  server: 86.38.247.109
+  port: 2087
+  password: sshs8_6481354771
   udp: true
   tls: true
-  servername: xmfhlpy.com
+  servername: ul-singapore1.09vpn.com
+  sni: ul-singapore1.09vpn.com
   skip-cert-verify: true
-- name: 🇸🇬 新加坡-14 [纯净机房|1154ms]
+- type: vmess
+  name: 🇸🇬 新加坡-12 [纯净机房|749ms]
+  server: ww11.levikogjgfdd.ir
+  port: 18000
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: true
+- name: 🇸🇬 新加坡-13 [纯净机房|948ms]
+  password: None
+  port: 9443
+  server: 152.233.9.239
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇸🇬 新加坡-14 [纯净机房|957ms]
   port: 443
   server: 156.146.56.97
   skip-cert-verify: true
@@ -453,7 +466,7 @@ proxies:
   tls: true
   type: http
   udp: true
-- name: 🇸🇬 新加坡-15 [纯净机房|1039ms]
+- name: 🇸🇬 新加坡-15 [纯净机房|838ms]
   type: vless
   server: 5.34.177.164
   port: 443
@@ -466,31 +479,42 @@ proxies:
   reality-opts:
     public-key: cwWhNuekusD1iPZZ--7G891dU9PCacxyCYwsZxOApHA
     short-id: b2efed6d157e7bb0
-- name: 🇸🇬 新加坡-16 [纯净机房|1133ms]
-  password: None
-  port: 9443
-  server: 152.233.9.239
-  skip-cert-verify: true
-  sub_tag: P002-260618
-  tls: true
-  type: http
-  udp: true
-- name: 🇸🇬 新加坡-17 [纯净机房|1445ms]
+- name: 🇸🇬 新加坡-16 [原生ISP|1129ms]
+  password: c0a34a
+  port: 62000
+  server: 66.80.2.252
+  type: socks5
+  username: usereb7d
+- name: 🇸🇬 新加坡-17 [纯净机房|1158ms]
+  password: '8888'
+  port: 1080
+  server: 47.236.168.243
+  type: socks5
+  username: '8888'
+- name: 🇸🇬 新加坡-18 [原生ISP|1437ms]
   type: vless
-  server: 140.245.113.33
-  port: 443
+  server: 178.94.25.73
+  port: 10443
   udp: true
-  uuid: f4ca59b2-767d-3425-8dfc-95a96a0e6802
+  uuid: 2dacc738-5720-4824-b8bc-e3db57596ba7
+  tls: false
+  servername: 178.94.25.73
+- name: 🇸🇬 新加坡-19 [纯净机房|1305ms]
+  type: vless
+  server: 147.93.173.45
+  port: 10444
+  udp: true
+  uuid: 75c5f51b-d548-4eab-a26e-aa10fc3dbc7b
   tls: true
-  servername: learn.microsoft.com
+  servername: video.yandex.ru
   client-fingerprint: chrome
   flow: xtls-rprx-vision
   reality-opts:
-    public-key: tF9nKF6amexok5wKbieQ2QRKQI5_ZTFE6MUj1hUBBkY
-    short-id: c940a3b6d60b8611
+    public-key: 0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo
+    short-id: 8debcf36f1cc69ff
 - client-fingerprint: ios
   flow: xtls-rprx-vision
-  name: 🇸🇬 新加坡-18 [纯净机房|1490ms]
+  name: 🇸🇬 新加坡-20 [纯净机房|1444ms]
   network: tcp
   port: 30322
   reality-opts:
@@ -503,27 +527,63 @@ proxies:
   udp: true
   uuid: 57beeeb0-03fc-4fc9-94da-7604488a7134
   x-toolall-mihomo: true
-- name: 🇸🇬 新加坡-19 [廉价机房|938ms]
+- name: 🇸🇬 新加坡-21 [廉价机房|785ms]
+  port: 9090
+  server: 146.190.80.158
+  type: http
+- name: 🇸🇬 新加坡-22 [廉价机房|810ms]
   port: 9090
   server: 167.172.76.176
-  skip-cert-verify: true
+  sub_tag: R002-260618
   type: http
-- name: 🇸🇬 新加坡-20 [廉价机房|948ms]
+  udp: true
+- name: 🇸🇬 新加坡-23 [廉价机房|813ms]
+  port: 9090
+  server: 152.42.170.187
+  sub_tag: R002-260618
+  type: http
+  udp: true
+- name: 🇸🇬 新加坡-24 [纯净机房|1426ms]
+  port: 443
+  server: 154.26.139.24
+  skip-cert-verify: true
+  tls: true
+  type: http
+- client-fingerprint: chrome
+  name: 🇸🇬 新加坡-25 [廉价机房|949ms]
+  network: ws
+  port: 2096
+  server: 139.162.27.96
+  servername: free-server.techsonic.dev
+  tls: true
+  type: vless
+  uuid: 6e59d5c5-7aa3-4c36-a4c4-e3b899525ed2
+  ws-opts:
+    headers:
+      Host: free-server.techsonic.dev
+    path: /free-server.techsonic.dev
+  skip-cert-verify: true
+- name: 🇸🇬 新加坡-26 [廉价机房|1160ms]
   password: None
   port: 9090
   server: 167.99.74.174
   sub_tag: R002-260618
   type: http
   udp: true
-- name: 🇸🇬 新加坡-21 [原生ISP|1732ms]
+- name: 🇸🇬 新加坡-27 [原生ISP|3261ms]
   type: vless
   server: 178.94.25.73
-  port: 10443
+  port: 10444
   udp: true
   uuid: 2dacc738-5720-4824-b8bc-e3db57596ba7
-  tls: false
-  servername: 178.94.25.73
-- name: 🇸🇬 新加坡-22 [纯净机房|1801ms]
+  tls: true
+  servername: video.yandex.ru
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  reality-opts:
+    public-key: 0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo
+    short-id: 8debcf36f1cc69ff
+- name: 🇸🇬 新加坡-28 [纯净机房|3466ms]
   type: vless
   server: zfapi.zalolink.com
   port: 46957
@@ -537,137 +597,102 @@ proxies:
     public-key: 1SefqLQXrqkiUdf7cTMF53hrMZyo684_uneRC8-qTxI
     short-id: 8f6683a234d3
 - type: vmess
-  name: 🇸🇬 新加坡-23 [纯净机房|1813ms]
-  server: 141.193.213.21
-  port: 8443
-  uuid: bd67fcd2-ec34-40a6-aac6-67731f2d7011
+  name: 🇸🇬 新加坡-29 [原生ISP|7032ms]
+  server: 195.133.135.238
+  port: 10086
+  uuid: b831381d-6324-4d53-ad4f-8cda48b30811
   cipher: auto
   alterId: 0
   udp: true
-  tls: true
-  servername: matrix.phonicsindia.mobi
-  sni: matrix.phonicsindia.mobi
+  tls: false
   skip-cert-verify: true
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: matrix.phonicsindia.mobi
-- client-fingerprint: chrome
-  name: 🇸🇬 新加坡-24 [廉价机房|1161ms]
-  network: ws
-  port: 2096
-  server: 139.162.27.96
-  servername: free-server.techsonic.dev
-  tls: true
-  type: vless
-  uuid: 6e59d5c5-7aa3-4c36-a4c4-e3b899525ed2
-  ws-opts:
-    headers:
-      Host: free-server.techsonic.dev
-    path: /free-server.techsonic.dev
-  skip-cert-verify: true
-- name: 🇸🇬 新加坡-25 [原生ISP|2365ms]
-  type: vless
-  server: 178.94.25.73
-  port: 10444
-  udp: true
-  uuid: 2dacc738-5720-4824-b8bc-e3db57596ba7
-  tls: true
-  servername: video.yandex.ru
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: 0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo
-    short-id: 8debcf36f1cc69ff
-- name: 🇸🇬 新加坡-26 [纯净机房|2345ms]
-  port: 443
-  server: 154.26.139.24
-  skip-cert-verify: true
-  tls: true
-  type: http
-- name: 🇸🇬 新加坡-27 [纯净机房|2515ms]
-  type: vless
-  server: win2loxfde0202.gggrelay.org
-  port: 30322
-  udp: true
-  uuid: 57beeeb0-03fc-4fc9-94da-7604488a7134
-  tls: true
-  servername: psstatic.cdn.bcebos.com
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: 5gncThwqPFzLu23WO3mPTEhG7-KgVYlGVvveHjM2SUo
-    short-id: 6a60e7e382d6
-- name: 🇸🇬 新加坡-28 [纯净机房|2542ms]
-  type: vless
-  server: 147.93.173.45
-  port: 10444
-  udp: true
-  uuid: 75c5f51b-d548-4eab-a26e-aa10fc3dbc7b
-  tls: true
-  servername: video.yandex.ru
-  client-fingerprint: chrome
-  flow: xtls-rprx-vision
-  reality-opts:
-    public-key: 0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo
-    short-id: 8debcf36f1cc69ff
-- name: 🇸🇬 新加坡-29 [廉价机房|2111ms]
-  port: 9090
-  server: 152.42.170.187
-  sub_tag: R002-260618
-  type: http
-  udp: true
-- name: 🇺🇸 美国-亚特兰大-01 [原生ISP|1593ms]
+- name: 🇺🇸 美国-亚特兰大-01 [原生ISP|2099ms]
   port: 58764
   server: 118.184.140.90
   skip-cert-verify: true
   tls: true
   type: http
-- name: 🇺🇸 美国-其他-01 [原生ISP|157ms]
-  type: vmess
-  server: 38.107.226.5
-  port: 1270
-  uuid: 5c040f1d-45db-43bd-8d46-e4950e433735
-  alterId: 0
-  cipher: auto
+- name: 🇺🇸 美国-其他-01 [纯净机房|101ms]
+  type: ss
+  server: 129.146.61.90
+  port: 50356
+  cipher: 2022-blake3-chacha20-poly1305
+  password: qG5HzrJO2OAzMFY6WDz991qHHonSP2ix6l6jKlHwokY=
+  udp: true
+- name: 🇺🇸 美国-其他-02 [纯净机房|120ms]
+  server: 95.215.201.18
+  port: 19999
+  type: ss
+  cipher: aes-256-gcm
+  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
+- name: 🇺🇸 美国-其他-03 [原生ISP|152ms]
+  password: l1tlrdx52v
+  port: 62000
+  server: 66.253.2.69
+  type: socks5
+  username: u_rb1dba2
+- type: trojan
+  name: 🇺🇸 美国-其他-04 [纯净机房|97ms]
+  server: 66.163.112.142
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   tls: true
-  servername: xmfhlpy.com
+  servername: cdn.unlockyourfuturefindyourperfectcareer.com
+  sni: cdn.unlockyourfuturefindyourperfectcareer.com
   skip-cert-verify: true
-- name: 🇺🇸 美国-其他-02 [纯净机房|95ms]
-  type: ss
-  server: 15.204.246.108
-  port: 8881
-  cipher: aes-256-gcm
-  password: kDWvXYZoTBcGkC4
-  udp: true
-- name: 🇺🇸 美国-其他-03 [纯净机房|96ms]
-  type: vmess
-  server: 172.111.38.246
-  port: 1270
-  uuid: 5c040f1d-45db-43bd-8d46-e4950e433735
-  alterId: 0
-  cipher: auto
+- type: trojan
+  name: 🇺🇸 美国-其他-05 [纯净机房|99ms]
+  server: 66.163.112.147
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
   tls: true
-  servername: xmfhlpy.com
+  servername: courses.unlockyourfuturefindyourperfectcareer.com
+  sni: courses.unlockyourfuturefindyourperfectcareer.com
   skip-cert-verify: true
-- name: 🇺🇸 美国-其他-04 [纯净机房|102ms]
-  type: ss
-  server: 15.204.233.41
-  port: 8882
-  cipher: aes-256-gcm
-  password: kDWvXYZoTBcGkC4
+- type: vmess
+  name: 🇺🇸 美国-其他-06 [纯净机房|102ms]
+  server: 129.146.77.248
+  port: 39495
+  uuid: f836c736-87fc-4fde-aabc-00857ecdff3e
+  cipher: auto
+  alterId: 0
   udp: true
-- name: 🇺🇸 美国-其他-05 [纯净机房|152ms]
-  type: ss
-  server: 15.204.247.244
-  port: 4444
-  cipher: aes-256-gcm
-  password: pKEW8JPByTVTLtM
+  tls: false
+  skip-cert-verify: true
+  network: ws
+  ws-opts:
+    path: /cctv13.m3u8
+- type: trojan
+  name: 🇺🇸 美国-其他-07 [纯净机房|106ms]
+  server: 66.163.112.31
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
-- name: 🇺🇸 美国-其他-06 [纯净机房|358ms]
+  tls: true
+  servername: unlockyourfuturefindyourperfectcareer.com
+  sni: unlockyourfuturefindyourperfectcareer.com
+  skip-cert-verify: true
+- type: trojan
+  name: 🇺🇸 美国-其他-08 [纯净机房|113ms]
+  server: 66.163.112.171
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  udp: true
+  tls: true
+  servername: learn.unlockyourfuturefindyourperfectcareer.com
+  sni: learn.unlockyourfuturefindyourperfectcareer.com
+  skip-cert-verify: true
+- type: trojan
+  name: 🇺🇸 美国-其他-09 [纯净机房|165ms]
+  server: 66.163.112.13
+  port: 443
+  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  udp: true
+  tls: true
+  skip-cert-verify: true
+- name: 🇺🇸 美国-其他-10 [纯净机房|379ms]
   network: ws
   port: 443
   server: 199.232.78.120
@@ -680,15 +705,17 @@ proxies:
     headers:
       host: ushetzijji.global.ssl.fastly.net.
     path: /
-- name: 🇺🇸 美国-其他-07 [纯净机房|903ms]
-  type: ss
-  server: 15.204.247.124
-  port: 2375
-  cipher: aes-256-gcm
-  password: faBAoD54k87UJG7
+- name: 🇺🇸 美国-其他-11 [纯净机房|462ms]
+  port: 443
+  server: berniesbodybla.fun
+  sni: berniesbodybla.fun
+  sub_tag: R002-260618
+  tls: true
+  type: http
   udp: true
+  skip-cert-verify: true
 - type: vless
-  name: 🇺🇸 美国-其他-08 [纯净机房|1167ms]
+  name: 🇺🇸 美国-其他-12 [纯净机房|850ms]
   server: zfapi.zalolink.com
   port: 47691
   uuid: 57beeeb0-03fc-4fc9-94da-7604488a7134
@@ -702,87 +729,315 @@ proxies:
   reality-opts:
     public-key: 6PbC7GxOg_YdXya-53llPReUzoU_yknQbkDvI4uorBg
     short-id: 2905326a
-- name: 🇺🇸 美国-其他-09 [纯净机房|2238ms]
-  type: ss
-  server: 15.204.246.107
-  port: 8888
-  cipher: aes-256-gcm
-  password: Y6R9pAtvxxzmGC
-  udp: true
-- name: 🇺🇸 美国-阿什本-01 [纯净机房|90ms]
+- name: 🇺🇸 美国-其他-13 [纯净机房|1112ms]
   type: vmess
-  server: 67.220.95.49
-  port: 1270
-  uuid: 5c040f1d-45db-43bd-8d46-e4950e433735
+  server: 172.67.167.78
+  port: 8443
+  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
   alterId: 0
   cipher: auto
   udp: true
   tls: true
-  servername: xmfhlpy.com
+  network: ws
+  ws-opts:
+    path: /lMnsZUN4/
+    headers:
+      Host: v2ray1.dozapp.xyz
   skip-cert-verify: true
-- name: 🇺🇸 美国-阿什本-02 [纯净机房|101ms]
+- name: 🇺🇸 美国-其他-14 [纯净机房|1283ms]
+  type: vmess
+  server: 172.66.0.1
+  port: 8443
+  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  servername: v2ray1.dozapp.xyz
+  network: ws
+  ws-opts:
+    path: /lMnsZUN4/
+    headers:
+      Host: v2ray1.dozapp.xyz
+  skip-cert-verify: true
+- name: 🇺🇸 美国-其他-15 [纯净机房|1906ms]
+  type: vmess
+  server: 188.114.96.3
+  port: 8443
+  uuid: 60441548-b68e-43b2-8191-e3b884be4b3c
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  network: ws
+  ws-opts:
+    path: /lMnsZUN4/
+    headers:
+      Host: v2ray1.dozapp.xyz
+  skip-cert-verify: true
+- type: vmess
+  name: 🇺🇸 美国-其他-16 [纯净机房|2156ms]
+  server: 129.146.143.80
+  port: 48111
+  uuid: d4603cc2-e0ee-4651-83f5-1db5b7168177
+  cipher: auto
+  alterId: 0
+  udp: true
+  tls: false
+  skip-cert-verify: true
+- name: 🇺🇸 美国-洛杉矶-01 [纯净机房|110ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.196
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-02 [纯净机房|111ms]
   password: None
-  port: 443
-  server: 198.44.135.27
+  port: 9002
+  server: 138.199.35.197
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-03 [纯净机房|112ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.201
+  skip-cert-verify: true
+  sni: 138.199.35.201
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-04 [纯净机房|112ms]
+  password: ''
+  port: 9002
+  server: 138.199.35.199
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: ''
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-05 [纯净机房|112ms]
+  password: None
+  port: 9002
+  server: 138.199.35.206
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-06 [纯净机房|113ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.217
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-07 [纯净机房|114ms]
+  password: None
+  port: 9002
+  server: 138.199.35.204
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-08 [纯净机房|114ms]
+  password: None
+  port: 9002
+  server: 138.199.35.210
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-09 [纯净机房|114ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.213
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-10 [纯净机房|114ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.207
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-11 [纯净机房|115ms]
+  password: None
+  port: 9002
+  server: 138.199.35.198
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-12 [纯净机房|116ms]
+  password: ''
+  port: 9002
+  server: 138.199.35.218
+  skip-cert-verify: true
+  tls: true
+  type: http
+  username: ''
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-13 [纯净机房|116ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.215
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-14 [纯净机房|117ms]
+  password: None
+  port: 9002
+  server: 138.199.35.211
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-15 [纯净机房|117ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.202
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-16 [纯净机房|121ms]
+  password: None
+  port: 9002
+  server: 138.199.35.212
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-17 [纯净机房|124ms]
+  port: 9002
+  server: 138.199.35.216
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-18 [纯净机房|135ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.214
+  skip-cert-verify: true
+  sub_tag: R002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-19 [纯净机房|138ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.220
+  skip-cert-verify: true
+  sub_tag: P002-260618
+  tls: true
+  type: http
+  username: 'null'
+  udp: true
+- name: 🇺🇸 美国-洛杉矶-20 [纯净机房|140ms]
+  password: None
+  port: 9002
+  server: 138.199.35.203
   skip-cert-verify: true
   sub_tag: K001-260618
   tls: true
   type: http
   username: ''
   udp: true
-- name: 🇺🇸 美国-阿什本-03 [纯净机房|161ms]
-  server: 45.86.51.18
-  port: 19999
-  type: ss
-  cipher: aes-256-gcm
-  password: ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4=
-- type: trojan
-  name: 🇺🇸 美国-阿什本-04 [纯净机房|291ms]
-  server: 66.163.122.25
-  port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
-  udp: true
-  tls: true
-  servername: cdn.searchnationwidecareerchangehelperandguidancetoday.com
-  sni: cdn.searchnationwidecareerchangehelperandguidancetoday.com
-  skip-cert-verify: true
-- name: 🇺🇸 美国-阿什本-05 [纯净机房|292ms]
-  port: 9443
-  server: 198.44.135.19
+- name: 🇺🇸 美国-洛杉矶-21 [纯净机房|202ms]
+  password: 'null'
+  port: 9002
+  server: 138.199.35.205
   skip-cert-verify: true
   sub_tag: R002-260618
   tls: true
   type: http
+  username: 'null'
   udp: true
-- type: trojan
-  name: 🇺🇸 美国-阿什本-06 [纯净机房|763ms]
-  server: 66.163.122.7
+- name: 🇺🇸 美国-洛杉矶-22 [纯净机房|345ms]
+  type: vless
+  server: 104.168.109.213
   port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
   udp: true
+  uuid: 74b86103-0a6e-4a0e-8430-2aa84af805fc
   tls: true
-  servername: www.searchnationwidecareerchangehelperandguidancetoday.com
-  sni: www.searchnationwidecareerchangehelperandguidancetoday.com
+  servername: www.cloudflare.com
+  client-fingerprint: chrome
+  flow: xtls-rprx-vision
+  reality-opts:
+    public-key: rU4-ii54LkmEWBaliTQHvi3jc0fDTlSmutVtzedMNRM
+    short-id: 6ba7b8
+- name: 🇺🇸 美国-洛杉矶-23 [纯净机房|2797ms]
+  password: 0324fbc29561
+  port: 443
+  server: sdf65h46wr.df6h451rh.xin
+  servername: images.ctfassets.net
   skip-cert-verify: true
-- type: trojan
-  name: 🇺🇸 美国-阿什本-07 [纯净机房|916ms]
-  server: 66.163.122.113
+  sni: images.ctfassets.net
+  tls: true
+  type: anytls
+  x-toolall-mihomo: true
+- name: 🇺🇸 美国-芝加哥-01 [纯净机房|4660ms]
+  type: vmess
+  server: 172.64.229.21
   port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  alterId: 0
+  cipher: auto
   udp: true
   tls: true
-  servername: api.searchnationwidecareerchangehelperandguidancetoday.com
-  sni: api.searchnationwidecareerchangehelperandguidancetoday.com
+  servername: vmess.lbw666.dpdns.org
+  network: ws
+  ws-opts:
+    path: /ws?ed=2048
+    headers:
+      Host: vmess.lbw666.dpdns.org
   skip-cert-verify: true
-- type: trojan
-  name: 🇺🇸 美国-阿什本-08 [纯净机房|1045ms]
-  server: 66.163.122.46
+- name: 🇺🇸 美国-芝加哥-02 [纯净机房|7625ms]
+  type: vmess
+  server: 104.27.0.1
   port: 443
-  password: 0ab6c98dae3b48e8b9c4a776b6c9c19a
+  uuid: 0cf6d970-3f1d-4aae-a989-92a8f76ae3db
+  alterId: 0
+  cipher: auto
   udp: true
   tls: true
-  servername: searchnationwidecareerchangehelperandguidancetoday.com
-  sni: searchnationwidecareerchangehelperandguidancetoday.com
+  servername: vmess.lbw666.dpdns.org
+  network: ws
+  ws-opts:
+    path: /ws
+    headers:
+      Host: vmess.lbw666.dpdns.org
   skip-cert-verify: true
 proxy-groups:
 - name: 🚀 节点选择 (锁定纯净地区)
@@ -804,21 +1059,25 @@ proxy-groups:
   - ⚡ 🇺🇸 美国-亚特兰大 (防抖优选)
   - 🔒 🇺🇸 美国-其他 (固定纯净IP)
   - ⚡ 🇺🇸 美国-其他 (防抖优选)
-  - 🔒 🇺🇸 美国-阿什本 (固定纯净IP)
-  - ⚡ 🇺🇸 美国-阿什本 (防抖优选)
+  - 🔒 🇺🇸 美国-洛杉矶 (固定纯净IP)
+  - ⚡ 🇺🇸 美国-洛杉矶 (防抖优选)
+  - 🔒 🇺🇸 美国-芝加哥 (固定纯净IP)
+  - ⚡ 🇺🇸 美国-芝加哥 (防抖优选)
   - DIRECT
 - name: 🔒 🇭🇰 香港 (固定纯净IP)
   type: fallback
   proxies: &id001
-  - 🇭🇰 香港-01 [纯净机房|828ms]
-  - 🇭🇰 香港-02 [纯净机房|868ms]
-  - 🇭🇰 香港-03 [纯净机房|894ms]
-  - 🇭🇰 香港-04 [原生ISP|1067ms]
-  - 🇭🇰 香港-05 [原生ISP|1383ms]
-  - 🇭🇰 香港-06 [纯净机房|1237ms]
-  - 🇭🇰 香港-07 [原生ISP|1488ms]
-  - 🇭🇰 香港-08 [纯净机房|4403ms]
-  - 🇭🇰 香港-09 [纯净机房|4913ms]
+  - 🇭🇰 香港-01 [纯净机房|546ms]
+  - 🇭🇰 香港-02 [纯净机房|543ms]
+  - 🇭🇰 香港-03 [纯净机房|701ms]
+  - 🇭🇰 香港-04 [原生ISP|757ms]
+  - 🇭🇰 香港-05 [原生ISP|955ms]
+  - 🇭🇰 香港-06 [纯净机房|698ms]
+  - 🇭🇰 香港-07 [原生ISP|1034ms]
+  - 🇭🇰 香港-08 [纯净机房|1106ms]
+  - 🇭🇰 香港-09 [纯净机房|1227ms]
+  - 🇭🇰 香港-10 [纯净机房|1337ms]
+  - 🇭🇰 香港-11 [纯净机房|1453ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -832,8 +1091,8 @@ proxy-groups:
 - name: 🔒 🇭🇰 香港-其他 (固定纯净IP)
   type: fallback
   proxies: &id002
-  - 🇭🇰 香港-其他-01 [原生ISP|1118ms]
-  - 🇭🇰 香港-其他-02 [原生ISP|1165ms]
+  - 🇭🇰 香港-其他-01 [原生ISP|134ms]
+  - 🇭🇰 香港-其他-02 [原生ISP|1226ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -847,24 +1106,20 @@ proxy-groups:
 - name: 🔒 🇯🇵 日本-东京 (固定纯净IP)
   type: fallback
   proxies: &id003
-  - 🇯🇵 日本-东京-01 [纯净机房|508ms]
-  - 🇯🇵 日本-东京-02 [纯净机房|509ms]
-  - 🇯🇵 日本-东京-03 [纯净机房|577ms]
-  - 🇯🇵 日本-东京-04 [纯净机房|663ms]
-  - 🇯🇵 日本-东京-05 [纯净机房|685ms]
-  - 🇯🇵 日本-东京-06 [纯净机房|686ms]
-  - 🇯🇵 日本-东京-07 [纯净机房|677ms]
-  - 🇯🇵 日本-东京-08 [纯净机房|681ms]
-  - 🇯🇵 日本-东京-09 [原生ISP|889ms]
-  - 🇯🇵 日本-东京-10 [原生ISP|920ms]
-  - 🇯🇵 日本-东京-11 [纯净机房|823ms]
-  - 🇯🇵 日本-东京-12 [纯净机房|951ms]
-  - 🇯🇵 日本-东京-13 [纯净机房|1745ms]
-  - 🇯🇵 日本-东京-14 [原生ISP|1996ms]
-  - 🇯🇵 日本-东京-15 [纯净机房|1882ms]
-  - 🇯🇵 日本-东京-16 [纯净机房|1927ms]
-  - 🇯🇵 日本-东京-17 [纯净机房|2322ms]
-  - 🇯🇵 日本-东京-18 [纯净机房|7113ms]
+  - 🇯🇵 日本-东京-01 [纯净机房|399ms]
+  - 🇯🇵 日本-东京-02 [纯净机房|434ms]
+  - 🇯🇵 日本-东京-03 [纯净机房|525ms]
+  - 🇯🇵 日本-东京-04 [纯净机房|545ms]
+  - 🇯🇵 日本-东京-05 [纯净机房|546ms]
+  - 🇯🇵 日本-东京-06 [纯净机房|492ms]
+  - 🇯🇵 日本-东京-07 [原生ISP|651ms]
+  - 🇯🇵 日本-东京-08 [纯净机房|548ms]
+  - 🇯🇵 日本-东京-09 [原生ISP|772ms]
+  - 🇯🇵 日本-东京-10 [原生ISP|821ms]
+  - 🇯🇵 日本-东京-11 [纯净机房|771ms]
+  - 🇯🇵 日本-东京-12 [纯净机房|946ms]
+  - 🇯🇵 日本-东京-13 [纯净机房|1616ms]
+  - 🇯🇵 日本-东京-14 [纯净机房|4387ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -878,7 +1133,7 @@ proxy-groups:
 - name: 🔒 🇯🇵 日本-大阪 (固定纯净IP)
   type: fallback
   proxies: &id004
-  - 🇯🇵 日本-大阪-01 [原生ISP|1108ms]
+  - 🇯🇵 日本-大阪-01 [原生ISP|657ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -892,9 +1147,10 @@ proxy-groups:
 - name: 🔒 🇰🇷 韩国-首尔 (固定纯净IP)
   type: fallback
   proxies: &id005
-  - 🇰🇷 韩国-首尔-01 [原生ISP|709ms]
-  - 🇰🇷 韩国-首尔-02 [纯净机房|719ms]
-  - 🇰🇷 韩国-首尔-03 [原生ISP|839ms]
+  - 🇰🇷 韩国-首尔-01 [原生ISP|607ms]
+  - 🇰🇷 韩国-首尔-02 [纯净机房|796ms]
+  - 🇰🇷 韩国-首尔-03 [原生ISP|4000ms]
+  - 🇰🇷 韩国-首尔-04 [纯净机房|4577ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -908,35 +1164,35 @@ proxy-groups:
 - name: 🔒 🇸🇬 新加坡 (固定纯净IP)
   type: fallback
   proxies: &id006
-  - 🇸🇬 新加坡-01 [纯净机房|705ms]
-  - 🇸🇬 新加坡-02 [纯净机房|707ms]
-  - 🇸🇬 新加坡-03 [纯净机房|684ms]
-  - 🇸🇬 新加坡-04 [纯净机房|697ms]
-  - 🇸🇬 新加坡-05 [纯净机房|699ms]
-  - 🇸🇬 新加坡-06 [纯净机房|701ms]
-  - 🇸🇬 新加坡-07 [纯净机房|702ms]
-  - 🇸🇬 新加坡-08 [纯净机房|705ms]
-  - 🇸🇬 新加坡-09 [纯净机房|706ms]
-  - 🇸🇬 新加坡-10 [纯净机房|761ms]
-  - 🇸🇬 新加坡-11 [纯净机房|949ms]
-  - 🇸🇬 新加坡-12 [原生ISP|1156ms]
-  - 🇸🇬 新加坡-13 [纯净机房|925ms]
-  - 🇸🇬 新加坡-14 [纯净机房|1154ms]
-  - 🇸🇬 新加坡-15 [纯净机房|1039ms]
-  - 🇸🇬 新加坡-16 [纯净机房|1133ms]
-  - 🇸🇬 新加坡-17 [纯净机房|1445ms]
-  - 🇸🇬 新加坡-18 [纯净机房|1490ms]
-  - 🇸🇬 新加坡-19 [廉价机房|938ms]
-  - 🇸🇬 新加坡-20 [廉价机房|948ms]
-  - 🇸🇬 新加坡-21 [原生ISP|1732ms]
-  - 🇸🇬 新加坡-22 [纯净机房|1801ms]
-  - 🇸🇬 新加坡-23 [纯净机房|1813ms]
-  - 🇸🇬 新加坡-24 [廉价机房|1161ms]
-  - 🇸🇬 新加坡-25 [原生ISP|2365ms]
-  - 🇸🇬 新加坡-26 [纯净机房|2345ms]
-  - 🇸🇬 新加坡-27 [纯净机房|2515ms]
-  - 🇸🇬 新加坡-28 [纯净机房|2542ms]
-  - 🇸🇬 新加坡-29 [廉价机房|2111ms]
+  - 🇸🇬 新加坡-01 [纯净机房|605ms]
+  - 🇸🇬 新加坡-02 [纯净机房|613ms]
+  - 🇸🇬 新加坡-03 [纯净机房|595ms]
+  - 🇸🇬 新加坡-04 [纯净机房|601ms]
+  - 🇸🇬 新加坡-05 [纯净机房|602ms]
+  - 🇸🇬 新加坡-06 [纯净机房|603ms]
+  - 🇸🇬 新加坡-07 [纯净机房|606ms]
+  - 🇸🇬 新加坡-08 [纯净机房|630ms]
+  - 🇸🇬 新加坡-09 [纯净机房|777ms]
+  - 🇸🇬 新加坡-10 [原生ISP|975ms]
+  - 🇸🇬 新加坡-11 [原生ISP|877ms]
+  - 🇸🇬 新加坡-12 [纯净机房|749ms]
+  - 🇸🇬 新加坡-13 [纯净机房|948ms]
+  - 🇸🇬 新加坡-14 [纯净机房|957ms]
+  - 🇸🇬 新加坡-15 [纯净机房|838ms]
+  - 🇸🇬 新加坡-16 [原生ISP|1129ms]
+  - 🇸🇬 新加坡-17 [纯净机房|1158ms]
+  - 🇸🇬 新加坡-18 [原生ISP|1437ms]
+  - 🇸🇬 新加坡-19 [纯净机房|1305ms]
+  - 🇸🇬 新加坡-20 [纯净机房|1444ms]
+  - 🇸🇬 新加坡-21 [廉价机房|785ms]
+  - 🇸🇬 新加坡-22 [廉价机房|810ms]
+  - 🇸🇬 新加坡-23 [廉价机房|813ms]
+  - 🇸🇬 新加坡-24 [纯净机房|1426ms]
+  - 🇸🇬 新加坡-25 [廉价机房|949ms]
+  - 🇸🇬 新加坡-26 [廉价机房|1160ms]
+  - 🇸🇬 新加坡-27 [原生ISP|3261ms]
+  - 🇸🇬 新加坡-28 [纯净机房|3466ms]
+  - 🇸🇬 新加坡-29 [原生ISP|7032ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -950,7 +1206,7 @@ proxy-groups:
 - name: 🔒 🇺🇸 美国-亚特兰大 (固定纯净IP)
   type: fallback
   proxies: &id007
-  - 🇺🇸 美国-亚特兰大-01 [原生ISP|1593ms]
+  - 🇺🇸 美国-亚特兰大-01 [原生ISP|2099ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -964,15 +1220,22 @@ proxy-groups:
 - name: 🔒 🇺🇸 美国-其他 (固定纯净IP)
   type: fallback
   proxies: &id008
-  - 🇺🇸 美国-其他-01 [原生ISP|157ms]
-  - 🇺🇸 美国-其他-02 [纯净机房|95ms]
-  - 🇺🇸 美国-其他-03 [纯净机房|96ms]
-  - 🇺🇸 美国-其他-04 [纯净机房|102ms]
-  - 🇺🇸 美国-其他-05 [纯净机房|152ms]
-  - 🇺🇸 美国-其他-06 [纯净机房|358ms]
-  - 🇺🇸 美国-其他-07 [纯净机房|903ms]
-  - 🇺🇸 美国-其他-08 [纯净机房|1167ms]
-  - 🇺🇸 美国-其他-09 [纯净机房|2238ms]
+  - 🇺🇸 美国-其他-01 [纯净机房|101ms]
+  - 🇺🇸 美国-其他-02 [纯净机房|120ms]
+  - 🇺🇸 美国-其他-03 [原生ISP|152ms]
+  - 🇺🇸 美国-其他-04 [纯净机房|97ms]
+  - 🇺🇸 美国-其他-05 [纯净机房|99ms]
+  - 🇺🇸 美国-其他-06 [纯净机房|102ms]
+  - 🇺🇸 美国-其他-07 [纯净机房|106ms]
+  - 🇺🇸 美国-其他-08 [纯净机房|113ms]
+  - 🇺🇸 美国-其他-09 [纯净机房|165ms]
+  - 🇺🇸 美国-其他-10 [纯净机房|379ms]
+  - 🇺🇸 美国-其他-11 [纯净机房|462ms]
+  - 🇺🇸 美国-其他-12 [纯净机房|850ms]
+  - 🇺🇸 美国-其他-13 [纯净机房|1112ms]
+  - 🇺🇸 美国-其他-14 [纯净机房|1283ms]
+  - 🇺🇸 美国-其他-15 [纯净机房|1906ms]
+  - 🇺🇸 美国-其他-16 [纯净机房|2156ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
@@ -983,23 +1246,53 @@ proxy-groups:
   interval: 600
   tolerance: 500
   lazy: false
-- name: 🔒 🇺🇸 美国-阿什本 (固定纯净IP)
+- name: 🔒 🇺🇸 美国-洛杉矶 (固定纯净IP)
   type: fallback
   proxies: &id009
-  - 🇺🇸 美国-阿什本-01 [纯净机房|90ms]
-  - 🇺🇸 美国-阿什本-02 [纯净机房|101ms]
-  - 🇺🇸 美国-阿什本-03 [纯净机房|161ms]
-  - 🇺🇸 美国-阿什本-04 [纯净机房|291ms]
-  - 🇺🇸 美国-阿什本-05 [纯净机房|292ms]
-  - 🇺🇸 美国-阿什本-06 [纯净机房|763ms]
-  - 🇺🇸 美国-阿什本-07 [纯净机房|916ms]
-  - 🇺🇸 美国-阿什本-08 [纯净机房|1045ms]
+  - 🇺🇸 美国-洛杉矶-01 [纯净机房|110ms]
+  - 🇺🇸 美国-洛杉矶-02 [纯净机房|111ms]
+  - 🇺🇸 美国-洛杉矶-03 [纯净机房|112ms]
+  - 🇺🇸 美国-洛杉矶-04 [纯净机房|112ms]
+  - 🇺🇸 美国-洛杉矶-05 [纯净机房|112ms]
+  - 🇺🇸 美国-洛杉矶-06 [纯净机房|113ms]
+  - 🇺🇸 美国-洛杉矶-07 [纯净机房|114ms]
+  - 🇺🇸 美国-洛杉矶-08 [纯净机房|114ms]
+  - 🇺🇸 美国-洛杉矶-09 [纯净机房|114ms]
+  - 🇺🇸 美国-洛杉矶-10 [纯净机房|114ms]
+  - 🇺🇸 美国-洛杉矶-11 [纯净机房|115ms]
+  - 🇺🇸 美国-洛杉矶-12 [纯净机房|116ms]
+  - 🇺🇸 美国-洛杉矶-13 [纯净机房|116ms]
+  - 🇺🇸 美国-洛杉矶-14 [纯净机房|117ms]
+  - 🇺🇸 美国-洛杉矶-15 [纯净机房|117ms]
+  - 🇺🇸 美国-洛杉矶-16 [纯净机房|121ms]
+  - 🇺🇸 美国-洛杉矶-17 [纯净机房|124ms]
+  - 🇺🇸 美国-洛杉矶-18 [纯净机房|135ms]
+  - 🇺🇸 美国-洛杉矶-19 [纯净机房|138ms]
+  - 🇺🇸 美国-洛杉矶-20 [纯净机房|140ms]
+  - 🇺🇸 美国-洛杉矶-21 [纯净机房|202ms]
+  - 🇺🇸 美国-洛杉矶-22 [纯净机房|345ms]
+  - 🇺🇸 美国-洛杉矶-23 [纯净机房|2797ms]
   url: http://www.google.com/generate_204
   interval: 180
   lazy: false
-- name: ⚡ 🇺🇸 美国-阿什本 (防抖优选)
+- name: ⚡ 🇺🇸 美国-洛杉矶 (防抖优选)
   type: url-test
   proxies: *id009
+  url: http://www.google.com/generate_204
+  interval: 600
+  tolerance: 500
+  lazy: false
+- name: 🔒 🇺🇸 美国-芝加哥 (固定纯净IP)
+  type: fallback
+  proxies: &id010
+  - 🇺🇸 美国-芝加哥-01 [纯净机房|4660ms]
+  - 🇺🇸 美国-芝加哥-02 [纯净机房|7625ms]
+  url: http://www.google.com/generate_204
+  interval: 180
+  lazy: false
+- name: ⚡ 🇺🇸 美国-芝加哥 (防抖优选)
+  type: url-test
+  proxies: *id010
   url: http://www.google.com/generate_204
   interval: 600
   tolerance: 500
