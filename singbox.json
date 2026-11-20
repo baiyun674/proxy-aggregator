@@ -44,27 +44,33 @@
       "outbounds": [
         "🔒 🇩🇪 德国-法兰克福 (固定纯净IP)",
         "⚡ 🇩🇪 德国-法兰克福 (防抖优选)",
-        "🔒 🇬🇧 英国-伦敦 (固定纯净IP)",
-        "⚡ 🇬🇧 英国-伦敦 (防抖优选)",
         "🔒 🇭🇰 香港 (固定纯净IP)",
         "⚡ 🇭🇰 香港 (防抖优选)",
+        "🔒 🇭🇰 香港-其他 (固定纯净IP)",
+        "⚡ 🇭🇰 香港-其他 (防抖优选)",
         "🔒 🇯🇵 日本-东京 (固定纯净IP)",
         "⚡ 🇯🇵 日本-东京 (防抖优选)",
+        "🔒 🇯🇵 日本-大阪 (固定纯净IP)",
+        "⚡ 🇯🇵 日本-大阪 (防抖优选)",
         "🔒 🇰🇷 韩国-首尔 (固定纯净IP)",
         "⚡ 🇰🇷 韩国-首尔 (防抖优选)",
         "🔒 🇸🇬 新加坡 (固定纯净IP)",
         "⚡ 🇸🇬 新加坡 (防抖优选)",
+        "🔒 🇺🇸 美国-亚特兰大 (固定纯净IP)",
+        "⚡ 🇺🇸 美国-亚特兰大 (防抖优选)",
         "🔒 🇺🇸 美国-其他 (固定纯净IP)",
         "⚡ 🇺🇸 美国-其他 (防抖优选)",
+        "🔒 🇺🇸 美国-洛杉矶 (固定纯净IP)",
+        "⚡ 🇺🇸 美国-洛杉矶 (防抖优选)",
         "🔒 🇺🇸 美国-芝加哥 (固定纯净IP)",
         "⚡ 🇺🇸 美国-芝加哥 (防抖优选)",
-        "🔒 🇺🇸 美国-西雅图 (固定纯净IP)",
-        "⚡ 🇺🇸 美国-西雅图 (防抖优选)",
+        "🔒 🇺🇸 美国-达拉斯 (固定纯净IP)",
+        "⚡ 🇺🇸 美国-达拉斯 (防抖优选)",
         "direct"
       ]
     },
     {
-      "tag": "🇩🇪 德国-法兰克福-01 [纯净机房|1388ms]",
+      "tag": "🇩🇪 德国-法兰克福-01 [纯净机房|3569ms]",
       "server": "free.fugui.lol",
       "server_port": 19482,
       "type": "vless",
@@ -88,16 +94,16 @@
       "type": "selector",
       "tag": "🔒 🇩🇪 德国-法兰克福 (固定纯净IP)",
       "outbounds": [
-        "🇩🇪 德国-法兰克福-01 [纯净机房|1388ms]",
+        "🇩🇪 德国-法兰克福-01 [纯净机房|3569ms]",
         "direct"
       ],
-      "default": "🇩🇪 德国-法兰克福-01 [纯净机房|1388ms]"
+      "default": "🇩🇪 德国-法兰克福-01 [纯净机房|3569ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇩🇪 德国-法兰克福 (防抖优选)",
       "outbounds": [
-        "🇩🇪 德国-法兰克福-01 [纯净机房|1388ms]"
+        "🇩🇪 德国-法兰克福-01 [纯净机房|3569ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -105,61 +111,93 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇬🇧 英国-伦敦-01 [原生ISP|1443ms]",
-      "server": "free.fugui.lol",
-      "server_port": 62015,
+      "tag": "🇭🇰 香港-01 [纯净机房|762ms]",
+      "server": "8.217.1.203",
+      "server_port": 8443,
       "type": "vless",
-      "uuid": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
+      "uuid": "8b17beac-b143-447d-aa68-14cbb121a602",
       "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
-        "server_name": "swdist.apple.com",
+        "server_name": "www.apple.com",
         "utls": {
           "enabled": true,
-          "fingerprint": "ios"
+          "fingerprint": "chrome"
         },
         "reality": {
           "enabled": true,
-          "public_key": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
-          "short_id": "fa514b83"
+          "public_key": "74P0QFvaK6B13rHsxR_t0lqRlg4YLuORD4VaHr5Jd38",
+          "short_id": "0bf55f64"
         }
       }
     },
     {
-      "type": "selector",
-      "tag": "🔒 🇬🇧 英国-伦敦 (固定纯净IP)",
-      "outbounds": [
-        "🇬🇧 英国-伦敦-01 [原生ISP|1443ms]",
-        "direct"
-      ],
-      "default": "🇬🇧 英国-伦敦-01 [原生ISP|1443ms]"
-    },
-    {
-      "type": "urltest",
-      "tag": "⚡ 🇬🇧 英国-伦敦 (防抖优选)",
-      "outbounds": [
-        "🇬🇧 英国-伦敦-01 [原生ISP|1443ms]"
-      ],
-      "url": "http://www.google.com/generate_204",
-      "interval": "600s",
-      "idle_timeout": "30m",
-      "interrupt_connect_latency": "3s"
-    },
-    {
-      "tag": "🇭🇰 香港-01 [纯净机房|2088ms]",
-      "server": "47.244.120.197",
-      "server_port": 44867,
-      "type": "vmess",
-      "uuid": "845e6b08-2919-4290-ade0-5dc7dcea59ca",
-      "security": "auto",
-      "alter_id": 0,
-      "transport": {
-        "type": "ws",
-        "path": "/arki"
+      "tag": "🇭🇰 香港-02 [纯净机房|837ms]",
+      "server": "2.26.204.46",
+      "server_port": 31001,
+      "type": "vless",
+      "uuid": "12a4f736-2238-49ee-831f-5516f15cc951",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "mensura.cdn-apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "lzpIiMqHXas_qayw-HvrySb78FNkVroBOqniwqPXPzY",
+          "short_id": "39793bc4708abbbb"
+        }
       }
     },
     {
-      "tag": "🇭🇰 香港-02 [原生ISP|3034ms]",
+      "tag": "🇭🇰 香港-03 [纯净机房|990ms]",
+      "server": "47.242.93.89",
+      "server_port": 12012,
+      "type": "trojan",
+      "password": "12012",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇭🇰 香港-04 [纯净机房|921ms]",
+      "server": "119.28.24.235",
+      "server_port": 3128,
+      "type": "http"
+    },
+    {
+      "tag": "🇭🇰 香港-05 [纯净机房|1303ms]",
+      "server": "2.26.204.46",
+      "server_port": 31003,
+      "type": "socks5"
+    },
+    {
+      "tag": "🇭🇰 香港-06 [纯净机房|1420ms]",
+      "server": "156.226.168.221",
+      "server_port": 35193,
+      "type": "vless",
+      "uuid": "35cbae61-ee10-4cb9-abb8-4950b35e9851",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "d_pn_DMaIxhCkNh80h0Mc7nP94hrlN--I8liOIREDxE",
+          "short_id": "e8daed2d"
+        }
+      }
+    },
+    {
+      "tag": "🇭🇰 香港-07 [原生ISP|1604ms]",
       "server": "156.245.232.239",
       "server_port": 35043,
       "type": "vmess",
@@ -172,7 +210,13 @@
       }
     },
     {
-      "tag": "🇭🇰 香港-03 [纯净机房|3899ms]",
+      "tag": "🇭🇰 香港-08 [原生ISP|2032ms]",
+      "server": "38.76.140.254",
+      "server_port": 8443,
+      "type": "http"
+    },
+    {
+      "tag": "🇭🇰 香港-09 [纯净机房|4497ms]",
       "server": "47.242.81.94",
       "server_port": 52080,
       "type": "vmess",
@@ -181,33 +225,76 @@
       "alter_id": 0
     },
     {
-      "tag": "🇭🇰 香港-04 [原生ISP|5441ms]",
-      "server": "209.248.57.105",
-      "server_port": 8388,
-      "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "AMok40FfaM+Ikwre16psBpVk6JHxsQZw"
+      "tag": "🇭🇰 香港-10 [纯净机房|6155ms]",
+      "server": "free.fugui.lol",
+      "server_port": 47396,
+      "type": "vless",
+      "uuid": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "swdist.apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
+          "short_id": "fa514b83"
+        }
+      }
+    },
+    {
+      "tag": "🇭🇰 香港-11 [纯净机房|6450ms]",
+      "server": "156.239.224.107",
+      "server_port": 57278,
+      "type": "vmess",
+      "uuid": "1270bed5-f908-4ecc-f1c8-de246033b186",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": ""
+        }
+      }
     },
     {
       "type": "selector",
       "tag": "🔒 🇭🇰 香港 (固定纯净IP)",
       "outbounds": [
-        "🇭🇰 香港-01 [纯净机房|2088ms]",
-        "🇭🇰 香港-02 [原生ISP|3034ms]",
-        "🇭🇰 香港-03 [纯净机房|3899ms]",
-        "🇭🇰 香港-04 [原生ISP|5441ms]",
+        "🇭🇰 香港-01 [纯净机房|762ms]",
+        "🇭🇰 香港-02 [纯净机房|837ms]",
+        "🇭🇰 香港-03 [纯净机房|990ms]",
+        "🇭🇰 香港-04 [纯净机房|921ms]",
+        "🇭🇰 香港-05 [纯净机房|1303ms]",
+        "🇭🇰 香港-06 [纯净机房|1420ms]",
+        "🇭🇰 香港-07 [原生ISP|1604ms]",
+        "🇭🇰 香港-08 [原生ISP|2032ms]",
+        "🇭🇰 香港-09 [纯净机房|4497ms]",
+        "🇭🇰 香港-10 [纯净机房|6155ms]",
+        "🇭🇰 香港-11 [纯净机房|6450ms]",
         "direct"
       ],
-      "default": "🇭🇰 香港-01 [纯净机房|2088ms]"
+      "default": "🇭🇰 香港-01 [纯净机房|762ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇭🇰 香港 (防抖优选)",
       "outbounds": [
-        "🇭🇰 香港-01 [纯净机房|2088ms]",
-        "🇭🇰 香港-02 [原生ISP|3034ms]",
-        "🇭🇰 香港-03 [纯净机房|3899ms]",
-        "🇭🇰 香港-04 [原生ISP|5441ms]"
+        "🇭🇰 香港-01 [纯净机房|762ms]",
+        "🇭🇰 香港-02 [纯净机房|837ms]",
+        "🇭🇰 香港-03 [纯净机房|990ms]",
+        "🇭🇰 香港-04 [纯净机房|921ms]",
+        "🇭🇰 香港-05 [纯净机房|1303ms]",
+        "🇭🇰 香港-06 [纯净机房|1420ms]",
+        "🇭🇰 香港-07 [原生ISP|1604ms]",
+        "🇭🇰 香港-08 [原生ISP|2032ms]",
+        "🇭🇰 香港-09 [纯净机房|4497ms]",
+        "🇭🇰 香港-10 [纯净机房|6155ms]",
+        "🇭🇰 香港-11 [纯净机房|6450ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -215,23 +302,49 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇯🇵 日本-东京-01 [纯净机房|396ms]",
-      "server": "168.138.205.100",
-      "server_port": 53758,
-      "type": "shadowsocks",
-      "method": "aes-128-gcm",
-      "password": "Bwlqh7GcFB"
+      "tag": "🇭🇰 香港-其他-01 [原生ISP|259ms]",
+      "server": "52.128.238.98",
+      "server_port": 18080,
+      "type": "http"
     },
     {
-      "tag": "🇯🇵 日本-东京-02 [纯净机房|390ms]",
-      "server": "149.22.87.241",
+      "tag": "🇭🇰 香港-其他-02 [原生ISP|952ms]",
+      "server": "151.242.183.28",
       "server_port": 443,
-      "type": "shadowsocks",
-      "method": "aes-128-gcm",
-      "password": "shadowsocks"
+      "type": "http"
     },
     {
-      "tag": "🇯🇵 日本-东京-03 [纯净机房|397ms]",
+      "tag": "🇭🇰 香港-其他-03 [原生ISP|1063ms]",
+      "server": "fan.240104.xyz",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇭🇰 香港-其他 (固定纯净IP)",
+      "outbounds": [
+        "🇭🇰 香港-其他-01 [原生ISP|259ms]",
+        "🇭🇰 香港-其他-02 [原生ISP|952ms]",
+        "🇭🇰 香港-其他-03 [原生ISP|1063ms]",
+        "direct"
+      ],
+      "default": "🇭🇰 香港-其他-01 [原生ISP|259ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇭🇰 香港-其他 (防抖优选)",
+      "outbounds": [
+        "🇭🇰 香港-其他-01 [原生ISP|259ms]",
+        "🇭🇰 香港-其他-02 [原生ISP|952ms]",
+        "🇭🇰 香港-其他-03 [原生ISP|1063ms]"
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-01 [纯净机房|439ms]",
       "server": "149.22.87.204",
       "server_port": 443,
       "type": "shadowsocks",
@@ -239,7 +352,15 @@
       "password": "shadowsocks"
     },
     {
-      "tag": "🇯🇵 日本-东京-04 [纯净机房|398ms]",
+      "tag": "🇯🇵 日本-东京-02 [纯净机房|440ms]",
+      "server": "149.22.87.241",
+      "server_port": 443,
+      "type": "shadowsocks",
+      "method": "aes-128-gcm",
+      "password": "shadowsocks"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-03 [纯净机房|441ms]",
       "server": "149.22.87.240",
       "server_port": 443,
       "type": "shadowsocks",
@@ -247,15 +368,82 @@
       "password": "shadowsocks"
     },
     {
-      "tag": "🇯🇵 日本-东京-05 [纯净机房|582ms]",
-      "server": "jpa.123069.xyz",
-      "server_port": 53758,
-      "type": "shadowsocks",
-      "method": "aes-128-gcm",
-      "password": "Bwlqh7GcFB"
+      "tag": "🇯🇵 日本-东京-04 [纯净机房|573ms]",
+      "server": "158.101.151.157",
+      "server_port": 443,
+      "type": "vless",
+      "uuid": "66171cbe-0b4b-4b24-99f6-d5a822f4dc9a",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "99eQkMBHqOEKororOWKFlmH8M0o9VaVpV9w1vQIxhz8",
+          "short_id": "684c7531e599dec0"
+        }
+      }
     },
     {
-      "tag": "🇯🇵 日本-东京-06 [纯净机房|512ms]",
+      "tag": "🇯🇵 日本-东京-05 [纯净机房|579ms]",
+      "server": "103.75.118.228",
+      "server_port": 11452,
+      "type": "vless",
+      "uuid": "814bd064-544d-4255-a070-5705c03f6da9",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "k2hPp0tTW0Da-HK94wYpSCLbuK44LfGqC2MSJIM1Ti0",
+          "short_id": "48050fab"
+        }
+      }
+    },
+    {
+      "tag": "🇯🇵 日本-东京-06 [纯净机房|638ms]",
+      "server": "84.247.155.196",
+      "server_port": 443,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "3eOFeNssde7PYYMv"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-07 [原生ISP|856ms]",
+      "server": "fan.587475.xyz",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-08 [原生ISP|1020ms]",
+      "server": "fan.571589.xyz",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "tag": "🇯🇵 日本-东京-09 [纯净机房|5693ms]",
+      "server": "168.110.63.247",
+      "server_port": 8081,
+      "type": "vmess",
+      "uuid": "c3bde296-8e44-4b8c-a325-577d5b3cc7c8",
+      "security": "auto",
+      "alter_id": 0,
+      "transport": {
+        "type": "ws",
+        "path": "/vless"
+      }
+    },
+    {
+      "tag": "🇯🇵 日本-东京-10 [纯净机房|6626ms]",
       "server": "8.209.247.109",
       "server_port": 443,
       "type": "hysteria2",
@@ -267,80 +455,37 @@
       }
     },
     {
-      "tag": "🇯🇵 日本-东京-07 [纯净机房|622ms]",
-      "server": "84.247.155.196",
-      "server_port": 443,
-      "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "3eOFeNssde7PYYMv"
-    },
-    {
-      "tag": "🇯🇵 日本-东京-08 [原生ISP|806ms]",
-      "server": "fan.571589.xyz",
-      "server_port": 443,
-      "type": "http"
-    },
-    {
-      "tag": "🇯🇵 日本-东京-09 [原生ISP|860ms]",
-      "server": "fan.587475.xyz",
-      "server_port": 443,
-      "type": "http"
-    },
-    {
-      "tag": "🇯🇵 日本-东京-10 [纯净机房|1272ms]",
-      "server": "104.16.10.9",
-      "server_port": 443,
-      "type": "vless",
-      "uuid": "4e4f1f70-5e56-4a76-bb9d-db087f4690c4",
-      "tls": {
-        "enabled": true,
-        "server_name": "jp3.yohototo.top",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/tyxyws",
-        "headers": {
-          "Host": "jp3.yohototo.top"
-        }
-      }
-    },
-    {
       "type": "selector",
       "tag": "🔒 🇯🇵 日本-东京 (固定纯净IP)",
       "outbounds": [
-        "🇯🇵 日本-东京-01 [纯净机房|396ms]",
-        "🇯🇵 日本-东京-02 [纯净机房|390ms]",
-        "🇯🇵 日本-东京-03 [纯净机房|397ms]",
-        "🇯🇵 日本-东京-04 [纯净机房|398ms]",
-        "🇯🇵 日本-东京-05 [纯净机房|582ms]",
-        "🇯🇵 日本-东京-06 [纯净机房|512ms]",
-        "🇯🇵 日本-东京-07 [纯净机房|622ms]",
-        "🇯🇵 日本-东京-08 [原生ISP|806ms]",
-        "🇯🇵 日本-东京-09 [原生ISP|860ms]",
-        "🇯🇵 日本-东京-10 [纯净机房|1272ms]",
+        "🇯🇵 日本-东京-01 [纯净机房|439ms]",
+        "🇯🇵 日本-东京-02 [纯净机房|440ms]",
+        "🇯🇵 日本-东京-03 [纯净机房|441ms]",
+        "🇯🇵 日本-东京-04 [纯净机房|573ms]",
+        "🇯🇵 日本-东京-05 [纯净机房|579ms]",
+        "🇯🇵 日本-东京-06 [纯净机房|638ms]",
+        "🇯🇵 日本-东京-07 [原生ISP|856ms]",
+        "🇯🇵 日本-东京-08 [原生ISP|1020ms]",
+        "🇯🇵 日本-东京-09 [纯净机房|5693ms]",
+        "🇯🇵 日本-东京-10 [纯净机房|6626ms]",
         "direct"
       ],
-      "default": "🇯🇵 日本-东京-01 [纯净机房|396ms]"
+      "default": "🇯🇵 日本-东京-01 [纯净机房|439ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇯🇵 日本-东京 (防抖优选)",
       "outbounds": [
-        "🇯🇵 日本-东京-01 [纯净机房|396ms]",
-        "🇯🇵 日本-东京-02 [纯净机房|390ms]",
-        "🇯🇵 日本-东京-03 [纯净机房|397ms]",
-        "🇯🇵 日本-东京-04 [纯净机房|398ms]",
-        "🇯🇵 日本-东京-05 [纯净机房|582ms]",
-        "🇯🇵 日本-东京-06 [纯净机房|512ms]",
-        "🇯🇵 日本-东京-07 [纯净机房|622ms]",
-        "🇯🇵 日本-东京-08 [原生ISP|806ms]",
-        "🇯🇵 日本-东京-09 [原生ISP|860ms]",
-        "🇯🇵 日本-东京-10 [纯净机房|1272ms]"
+        "🇯🇵 日本-东京-01 [纯净机房|439ms]",
+        "🇯🇵 日本-东京-02 [纯净机房|440ms]",
+        "🇯🇵 日本-东京-03 [纯净机房|441ms]",
+        "🇯🇵 日本-东京-04 [纯净机房|573ms]",
+        "🇯🇵 日本-东京-05 [纯净机房|579ms]",
+        "🇯🇵 日本-东京-06 [纯净机房|638ms]",
+        "🇯🇵 日本-东京-07 [原生ISP|856ms]",
+        "🇯🇵 日本-东京-08 [原生ISP|1020ms]",
+        "🇯🇵 日本-东京-09 [纯净机房|5693ms]",
+        "🇯🇵 日本-东京-10 [纯净机房|6626ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -348,7 +493,52 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇰🇷 韩国-首尔-01 [纯净机房|599ms]",
+      "tag": "🇯🇵 日本-大阪-01 [纯净机房|455ms]",
+      "server": "64.176.57.251",
+      "server_port": 8388,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "YKwDz3mFpT9vGcL8nBs5dHrA2sxM"
+    },
+    {
+      "tag": "🇯🇵 日本-大阪-02 [原生ISP|817ms]",
+      "server": "133.18.200.207",
+      "server_port": 343,
+      "type": "http"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇯🇵 日本-大阪 (固定纯净IP)",
+      "outbounds": [
+        "🇯🇵 日本-大阪-01 [纯净机房|455ms]",
+        "🇯🇵 日本-大阪-02 [原生ISP|817ms]",
+        "direct"
+      ],
+      "default": "🇯🇵 日本-大阪-01 [纯净机房|455ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇯🇵 日本-大阪 (防抖优选)",
+      "outbounds": [
+        "🇯🇵 日本-大阪-01 [纯净机房|455ms]",
+        "🇯🇵 日本-大阪-02 [原生ISP|817ms]"
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇰🇷 韩国-首尔-01 [纯净机房|504ms]",
+      "server": "140.238.2.250",
+      "server_port": 443,
+      "type": "vmess",
+      "uuid": "41a7089a-040b-4538-8b8d-010902405bde",
+      "security": "auto",
+      "alter_id": 0
+    },
+    {
+      "tag": "🇰🇷 韩国-首尔-02 [纯净机房|653ms]",
       "server": "158.247.253.243",
       "server_port": 443,
       "type": "trojan",
@@ -359,19 +549,57 @@
       }
     },
     {
+      "tag": "🇰🇷 韩国-首尔-03 [原生ISP|742ms]",
+      "server": "154.90.62.70",
+      "server_port": 56127,
+      "type": "trojan",
+      "password": "p5jTPcffLgi4gaNOJd2KUTb9YEPBBD5B",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇰🇷 韩国-首尔-04 [纯净机房|1345ms]",
+      "server": "seoul02.zgjok.com",
+      "server_port": 443,
+      "type": "vmess",
+      "uuid": "1a1e5196-eab4-4772-9012-65c27f19a524",
+      "security": "auto",
+      "alter_id": 0,
+      "tls": {
+        "enabled": true,
+        "server_name": "seoul02.zgjok.com",
+        "insecure": true
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "seoul02.zgjok.com"
+        }
+      }
+    },
+    {
       "type": "selector",
       "tag": "🔒 🇰🇷 韩国-首尔 (固定纯净IP)",
       "outbounds": [
-        "🇰🇷 韩国-首尔-01 [纯净机房|599ms]",
+        "🇰🇷 韩国-首尔-01 [纯净机房|504ms]",
+        "🇰🇷 韩国-首尔-02 [纯净机房|653ms]",
+        "🇰🇷 韩国-首尔-03 [原生ISP|742ms]",
+        "🇰🇷 韩国-首尔-04 [纯净机房|1345ms]",
         "direct"
       ],
-      "default": "🇰🇷 韩国-首尔-01 [纯净机房|599ms]"
+      "default": "🇰🇷 韩国-首尔-01 [纯净机房|504ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇰🇷 韩国-首尔 (防抖优选)",
       "outbounds": [
-        "🇰🇷 韩国-首尔-01 [纯净机房|599ms]"
+        "🇰🇷 韩国-首尔-01 [纯净机房|504ms]",
+        "🇰🇷 韩国-首尔-02 [纯净机房|653ms]",
+        "🇰🇷 韩国-首尔-03 [原生ISP|742ms]",
+        "🇰🇷 韩国-首尔-04 [纯净机房|1345ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -379,15 +607,15 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇸🇬 新加坡-01 [纯净机房|594ms]",
-      "server": "149.88.106.74",
-      "server_port": 19999,
+      "tag": "🇸🇬 新加坡-01 [纯净机房|630ms]",
+      "server": "158.178.230.120",
+      "server_port": 56927,
       "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+      "method": "2022-blake3-chacha20-poly1305",
+      "password": "GMhXRpy/pfPMVrZeCAxOxI5MpuH3llOtZKoeNLUT0n8="
     },
     {
-      "tag": "🇸🇬 新加坡-02 [纯净机房|620ms]",
+      "tag": "🇸🇬 新加坡-02 [纯净机房|649ms]",
       "server": "149.88.106.73",
       "server_port": 19999,
       "type": "shadowsocks",
@@ -395,31 +623,22 @@
       "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇸🇬 新加坡-03 [纯净机房|559ms]",
-      "server": "15.235.164.133",
+      "tag": "🇸🇬 新加坡-03 [纯净机房|658ms]",
+      "server": "149.88.106.74",
       "server_port": 19999,
       "type": "shadowsocks",
       "method": "aes-256-gcm",
       "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇸🇬 新加坡-04 [纯净机房|572ms]",
-      "server": "15.235.182.183",
-      "server_port": 19999,
-      "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+      "tag": "🇸🇬 新加坡-04 [原生ISP|715ms]",
+      "server": "178.94.25.73",
+      "server_port": 10443,
+      "type": "vless",
+      "uuid": "2dacc738-5720-4824-b8bc-e3db57596ba7"
     },
     {
-      "tag": "🇸🇬 新加坡-05 [纯净机房|602ms]",
-      "server": "149.88.107.74",
-      "server_port": 19999,
-      "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    },
-    {
-      "tag": "🇸🇬 新加坡-06 [纯净机房|606ms]",
+      "tag": "🇸🇬 新加坡-05 [纯净机房|633ms]",
       "server": "149.88.107.47",
       "server_port": 19999,
       "type": "shadowsocks",
@@ -427,16 +646,39 @@
       "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇸🇬 新加坡-07 [纯净机房|624ms]",
-      "server": "149.88.23.207",
-      "server_port": 18000,
-      "type": "vmess",
-      "uuid": "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe",
-      "security": "auto",
-      "alter_id": 0
+      "tag": "🇸🇬 新加坡-06 [纯净机房|636ms]",
+      "server": "15.235.164.133",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇸🇬 新加坡-08 [纯净机房|660ms]",
+      "tag": "🇸🇬 新加坡-07 [纯净机房|638ms]",
+      "server": "15.235.182.183",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇸🇬 新加坡-08 [纯净机房|654ms]",
+      "server": "51.79.228.131",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇸🇬 新加坡-09 [纯净机房|657ms]",
+      "server": "149.88.107.74",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇸🇬 新加坡-10 [纯净机房|673ms]",
       "server": "149.88.23.202",
       "server_port": 18000,
       "type": "vmess",
@@ -445,7 +687,43 @@
       "alter_id": 0
     },
     {
-      "tag": "🇸🇬 新加坡-09 [纯净机房|737ms]",
+      "tag": "🇸🇬 新加坡-11 [纯净机房|697ms]",
+      "server": "149.88.23.207",
+      "server_port": 18000,
+      "type": "vmess",
+      "uuid": "f8c8dc3d-0d37-46b0-8b34-a7232882fcfe",
+      "security": "auto",
+      "alter_id": 0
+    },
+    {
+      "tag": "🇸🇬 新加坡-12 [纯净机房|845ms]",
+      "server": "140.245.113.33",
+      "server_port": 443,
+      "type": "vless",
+      "uuid": "f4ca59b2-767d-3425-8dfc-95a96a0e6802",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "learn.microsoft.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "tF9nKF6amexok5wKbieQ2QRKQI5_ZTFE6MUj1hUBBkY",
+          "short_id": "c940a3b6d60b8611"
+        }
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡-13 [原生ISP|1028ms]",
+      "server": "149.88.99.209",
+      "server_port": 9443,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-14 [纯净机房|795ms]",
       "server": "ww11.levikogjgfdd.ir",
       "server_port": 18000,
       "type": "vmess",
@@ -454,7 +732,7 @@
       "alter_id": 0
     },
     {
-      "tag": "🇸🇬 新加坡-10 [纯净机房|952ms]",
+      "tag": "🇸🇬 新加坡-15 [纯净机房|923ms]",
       "server": "leviko-sg3477.shopingggg.ir",
       "server_port": 19999,
       "type": "shadowsocks",
@@ -462,28 +740,125 @@
       "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇸🇬 新加坡-11 [纯净机房|1521ms]",
-      "server": "141.193.213.21",
-      "server_port": 8443,
+      "tag": "🇸🇬 新加坡-16 [纯净机房|839ms]",
+      "server": "15.235.144.92",
+      "server_port": 1270,
       "type": "vmess",
-      "uuid": "bd67fcd2-ec34-40a6-aac6-67731f2d7011",
+      "uuid": "5c040f1d-45db-43bd-8d46-e4950e433735",
       "security": "auto",
       "alter_id": 0,
       "tls": {
         "enabled": true,
-        "server_name": "matrix.phonicsindia.mobi",
+        "server_name": "xmfhlpy.com",
         "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/",
-        "headers": {
-          "Host": "matrix.phonicsindia.mobi"
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡-17 [纯净机房|868ms]",
+      "server": "67.159.52.81",
+      "server_port": 443,
+      "type": "vless",
+      "uuid": "a16bd0e2-ff2e-4e4c-a955-0c684255a065",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "sg.fasti.win",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "-YTGWg5DjsLDyaDfr1D83kiUK22LVcrK3yC53lqqigs",
+          "short_id": "feedbacc"
         }
       }
     },
     {
-      "tag": "🇸🇬 新加坡-12 [廉价机房|915ms]",
+      "tag": "🇸🇬 新加坡-18 [纯净机房|869ms]",
+      "server": "5.34.177.164",
+      "server_port": 443,
+      "type": "vless",
+      "uuid": "ca678d26-5435-4d13-b378-06c4c3b070ff",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "gateway.icloud.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cwWhNuekusD1iPZZ--7G891dU9PCacxyCYwsZxOApHA",
+          "short_id": "b2efed6d157e7bb0"
+        }
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡-19 [纯净机房|1034ms]",
+      "server": "152.233.9.239",
+      "server_port": 9443,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-20 [纯净机房|1036ms]",
+      "server": "156.146.56.97",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-21 [纯净机房|1212ms]",
+      "server": "47.236.168.243",
+      "server_port": 1080,
+      "type": "socks5"
+    },
+    {
+      "tag": "🇸🇬 新加坡-22 [纯净机房|1414ms]",
+      "server": "15.235.184.127",
+      "server_port": 443,
+      "type": "trojan",
+      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
+      "tls": {
+        "enabled": true,
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡-23 [纯净机房|1390ms]",
+      "server": "147.93.173.45",
+      "server_port": 10444,
+      "type": "vless",
+      "uuid": "75c5f51b-d548-4eab-a26e-aa10fc3dbc7b",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "video.yandex.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "0oTkcqwLTUNLnSOP-VUWErmy6usAIg-biBE6ioZO-Vo",
+          "short_id": "8debcf36f1cc69ff"
+        }
+      }
+    },
+    {
+      "tag": "🇸🇬 新加坡-24 [纯净机房|1407ms]",
+      "server": "154.26.139.24",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-25 [廉价机房|847ms]",
+      "server": "159.223.41.216",
+      "server_port": 9090,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-26 [廉价机房|1171ms]",
       "server": "139.162.27.96",
       "server_port": 2096,
       "type": "vless",
@@ -506,80 +881,7 @@
       }
     },
     {
-      "tag": "🇸🇬 新加坡-13 [纯净机房|1551ms]",
-      "server": "43.160.239.37",
-      "server_port": 443,
-      "type": "http"
-    },
-    {
-      "tag": "🇸🇬 新加坡-14 [纯净机房|1975ms]",
-      "server": "154.26.139.24",
-      "server_port": 443,
-      "type": "http"
-    },
-    {
-      "tag": "🇸🇬 新加坡-15 [纯净机房|2026ms]",
-      "server": "free.fugui.lol",
-      "server_port": 51283,
-      "type": "vless",
-      "uuid": "ead3595f-4020-4e76-a3ec-c248e1a2f2f7",
-      "flow": "xtls-rprx-vision",
-      "tls": {
-        "enabled": true,
-        "server_name": "swdist.apple.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "IjWYbHNrZb3UCQxsTJyekEOA3tHq42L6Jw3O8MmLYVQ",
-          "short_id": "fa514b83"
-        }
-      }
-    },
-    {
-      "tag": "🇸🇬 新加坡-16 [纯净机房|3148ms]",
-      "server": "51.79.228.131",
-      "server_port": 19999,
-      "type": "shadowsocks",
-      "method": "aes-256-gcm",
-      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
-    },
-    {
-      "tag": "🇸🇬 新加坡-17 [纯净机房|4409ms]",
-      "server": "15.235.184.127",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
-      "tls": {
-        "enabled": true,
-        "insecure": true
-      }
-    },
-    {
-      "tag": "🇸🇬 新加坡-18 [纯净机房|5512ms]",
-      "server": "5.34.177.164",
-      "server_port": 443,
-      "type": "vless",
-      "uuid": "ca678d26-5435-4d13-b378-06c4c3b070ff",
-      "flow": "xtls-rprx-vision",
-      "tls": {
-        "enabled": true,
-        "server_name": "gateway.icloud.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "cwWhNuekusD1iPZZ--7G891dU9PCacxyCYwsZxOApHA",
-          "short_id": "b2efed6d157e7bb0"
-        }
-      }
-    },
-    {
-      "tag": "🇸🇬 新加坡-19 [纯净机房|5833ms]",
+      "tag": "🇸🇬 新加坡-27 [纯净机房|1931ms]",
       "server": "141.193.213.20",
       "server_port": 8443,
       "type": "vmess",
@@ -600,55 +902,89 @@
       }
     },
     {
+      "tag": "🇸🇬 新加坡-28 [廉价机房|2067ms]",
+      "server": "128.199.116.219",
+      "server_port": 9090,
+      "type": "http"
+    },
+    {
+      "tag": "🇸🇬 新加坡-29 [廉价机房|3929ms]",
+      "server": "139.180.220.175",
+      "server_port": 8388,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "qpSevKaUXYQKvSjp"
+    },
+    {
       "type": "selector",
       "tag": "🔒 🇸🇬 新加坡 (固定纯净IP)",
       "outbounds": [
-        "🇸🇬 新加坡-01 [纯净机房|594ms]",
-        "🇸🇬 新加坡-02 [纯净机房|620ms]",
-        "🇸🇬 新加坡-03 [纯净机房|559ms]",
-        "🇸🇬 新加坡-04 [纯净机房|572ms]",
-        "🇸🇬 新加坡-05 [纯净机房|602ms]",
-        "🇸🇬 新加坡-06 [纯净机房|606ms]",
-        "🇸🇬 新加坡-07 [纯净机房|624ms]",
-        "🇸🇬 新加坡-08 [纯净机房|660ms]",
-        "🇸🇬 新加坡-09 [纯净机房|737ms]",
-        "🇸🇬 新加坡-10 [纯净机房|952ms]",
-        "🇸🇬 新加坡-11 [纯净机房|1521ms]",
-        "🇸🇬 新加坡-12 [廉价机房|915ms]",
-        "🇸🇬 新加坡-13 [纯净机房|1551ms]",
-        "🇸🇬 新加坡-14 [纯净机房|1975ms]",
-        "🇸🇬 新加坡-15 [纯净机房|2026ms]",
-        "🇸🇬 新加坡-16 [纯净机房|3148ms]",
-        "🇸🇬 新加坡-17 [纯净机房|4409ms]",
-        "🇸🇬 新加坡-18 [纯净机房|5512ms]",
-        "🇸🇬 新加坡-19 [纯净机房|5833ms]",
+        "🇸🇬 新加坡-01 [纯净机房|630ms]",
+        "🇸🇬 新加坡-02 [纯净机房|649ms]",
+        "🇸🇬 新加坡-03 [纯净机房|658ms]",
+        "🇸🇬 新加坡-04 [原生ISP|715ms]",
+        "🇸🇬 新加坡-05 [纯净机房|633ms]",
+        "🇸🇬 新加坡-06 [纯净机房|636ms]",
+        "🇸🇬 新加坡-07 [纯净机房|638ms]",
+        "🇸🇬 新加坡-08 [纯净机房|654ms]",
+        "🇸🇬 新加坡-09 [纯净机房|657ms]",
+        "🇸🇬 新加坡-10 [纯净机房|673ms]",
+        "🇸🇬 新加坡-11 [纯净机房|697ms]",
+        "🇸🇬 新加坡-12 [纯净机房|845ms]",
+        "🇸🇬 新加坡-13 [原生ISP|1028ms]",
+        "🇸🇬 新加坡-14 [纯净机房|795ms]",
+        "🇸🇬 新加坡-15 [纯净机房|923ms]",
+        "🇸🇬 新加坡-16 [纯净机房|839ms]",
+        "🇸🇬 新加坡-17 [纯净机房|868ms]",
+        "🇸🇬 新加坡-18 [纯净机房|869ms]",
+        "🇸🇬 新加坡-19 [纯净机房|1034ms]",
+        "🇸🇬 新加坡-20 [纯净机房|1036ms]",
+        "🇸🇬 新加坡-21 [纯净机房|1212ms]",
+        "🇸🇬 新加坡-22 [纯净机房|1414ms]",
+        "🇸🇬 新加坡-23 [纯净机房|1390ms]",
+        "🇸🇬 新加坡-24 [纯净机房|1407ms]",
+        "🇸🇬 新加坡-25 [廉价机房|847ms]",
+        "🇸🇬 新加坡-26 [廉价机房|1171ms]",
+        "🇸🇬 新加坡-27 [纯净机房|1931ms]",
+        "🇸🇬 新加坡-28 [廉价机房|2067ms]",
+        "🇸🇬 新加坡-29 [廉价机房|3929ms]",
         "direct"
       ],
-      "default": "🇸🇬 新加坡-01 [纯净机房|594ms]"
+      "default": "🇸🇬 新加坡-01 [纯净机房|630ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇸🇬 新加坡 (防抖优选)",
       "outbounds": [
-        "🇸🇬 新加坡-01 [纯净机房|594ms]",
-        "🇸🇬 新加坡-02 [纯净机房|620ms]",
-        "🇸🇬 新加坡-03 [纯净机房|559ms]",
-        "🇸🇬 新加坡-04 [纯净机房|572ms]",
-        "🇸🇬 新加坡-05 [纯净机房|602ms]",
-        "🇸🇬 新加坡-06 [纯净机房|606ms]",
-        "🇸🇬 新加坡-07 [纯净机房|624ms]",
-        "🇸🇬 新加坡-08 [纯净机房|660ms]",
-        "🇸🇬 新加坡-09 [纯净机房|737ms]",
-        "🇸🇬 新加坡-10 [纯净机房|952ms]",
-        "🇸🇬 新加坡-11 [纯净机房|1521ms]",
-        "🇸🇬 新加坡-12 [廉价机房|915ms]",
-        "🇸🇬 新加坡-13 [纯净机房|1551ms]",
-        "🇸🇬 新加坡-14 [纯净机房|1975ms]",
-        "🇸🇬 新加坡-15 [纯净机房|2026ms]",
-        "🇸🇬 新加坡-16 [纯净机房|3148ms]",
-        "🇸🇬 新加坡-17 [纯净机房|4409ms]",
-        "🇸🇬 新加坡-18 [纯净机房|5512ms]",
-        "🇸🇬 新加坡-19 [纯净机房|5833ms]"
+        "🇸🇬 新加坡-01 [纯净机房|630ms]",
+        "🇸🇬 新加坡-02 [纯净机房|649ms]",
+        "🇸🇬 新加坡-03 [纯净机房|658ms]",
+        "🇸🇬 新加坡-04 [原生ISP|715ms]",
+        "🇸🇬 新加坡-05 [纯净机房|633ms]",
+        "🇸🇬 新加坡-06 [纯净机房|636ms]",
+        "🇸🇬 新加坡-07 [纯净机房|638ms]",
+        "🇸🇬 新加坡-08 [纯净机房|654ms]",
+        "🇸🇬 新加坡-09 [纯净机房|657ms]",
+        "🇸🇬 新加坡-10 [纯净机房|673ms]",
+        "🇸🇬 新加坡-11 [纯净机房|697ms]",
+        "🇸🇬 新加坡-12 [纯净机房|845ms]",
+        "🇸🇬 新加坡-13 [原生ISP|1028ms]",
+        "🇸🇬 新加坡-14 [纯净机房|795ms]",
+        "🇸🇬 新加坡-15 [纯净机房|923ms]",
+        "🇸🇬 新加坡-16 [纯净机房|839ms]",
+        "🇸🇬 新加坡-17 [纯净机房|868ms]",
+        "🇸🇬 新加坡-18 [纯净机房|869ms]",
+        "🇸🇬 新加坡-19 [纯净机房|1034ms]",
+        "🇸🇬 新加坡-20 [纯净机房|1036ms]",
+        "🇸🇬 新加坡-21 [纯净机房|1212ms]",
+        "🇸🇬 新加坡-22 [纯净机房|1414ms]",
+        "🇸🇬 新加坡-23 [纯净机房|1390ms]",
+        "🇸🇬 新加坡-24 [纯净机房|1407ms]",
+        "🇸🇬 新加坡-25 [廉价机房|847ms]",
+        "🇸🇬 新加坡-26 [廉价机房|1171ms]",
+        "🇸🇬 新加坡-27 [纯净机房|1931ms]",
+        "🇸🇬 新加坡-28 [廉价机房|2067ms]",
+        "🇸🇬 新加坡-29 [廉价机房|3929ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -656,8 +992,40 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇺🇸 美国-其他-01 [纯净机房|1072ms]",
-      "server": "104.21.57.84",
+      "tag": "🇺🇸 美国-亚特兰大-01 [原生ISP|1499ms]",
+      "server": "118.184.140.90",
+      "server_port": 58764,
+      "type": "http"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇺🇸 美国-亚特兰大 (固定纯净IP)",
+      "outbounds": [
+        "🇺🇸 美国-亚特兰大-01 [原生ISP|1499ms]",
+        "direct"
+      ],
+      "default": "🇺🇸 美国-亚特兰大-01 [原生ISP|1499ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇺🇸 美国-亚特兰大 (防抖优选)",
+      "outbounds": [
+        "🇺🇸 美国-亚特兰大-01 [原生ISP|1499ms]"
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇺🇸 美国-其他-01 [原生ISP|142ms]",
+      "server": "38.247.141.135",
+      "server_port": 443,
+      "type": "http"
+    },
+    {
+      "tag": "🇺🇸 美国-其他-02 [纯净机房|2614ms]",
+      "server": "172.67.161.144",
       "server_port": 8443,
       "type": "vmess",
       "uuid": "60441548-b68e-43b2-8191-e3b884be4b3c",
@@ -677,27 +1045,7 @@
       }
     },
     {
-      "tag": "🇺🇸 美国-其他-02 [纯净机房|1210ms]",
-      "server": "172.67.167.78",
-      "server_port": 8443,
-      "type": "vmess",
-      "uuid": "60441548-b68e-43b2-8191-e3b884be4b3c",
-      "security": "auto",
-      "alter_id": 0,
-      "tls": {
-        "enabled": true,
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/lMnsZUN4/",
-        "headers": {
-          "Host": "v2ray1.dozapp.xyz"
-        }
-      }
-    },
-    {
-      "tag": "🇺🇸 美国-其他-03 [纯净机房|1295ms]",
+      "tag": "🇺🇸 美国-其他-03 [纯净机房|6335ms]",
       "server": "104.17.77.77",
       "server_port": 8443,
       "type": "vmess",
@@ -717,68 +1065,23 @@
       }
     },
     {
-      "tag": "🇺🇸 美国-其他-04 [纯净机房|1360ms]",
-      "server": "172.64.80.1",
-      "server_port": 8443,
-      "type": "vmess",
-      "uuid": "60441548-b68e-43b2-8191-e3b884be4b3c",
-      "security": "auto",
-      "alter_id": 0,
-      "tls": {
-        "enabled": true,
-        "server_name": "v2ray1.dozapp.xyz",
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/lMnsZUN4/",
-        "headers": {
-          "Host": "v2ray1.dozapp.xyz"
-        }
-      }
-    },
-    {
-      "tag": "🇺🇸 美国-其他-05 [纯净机房|4197ms]",
-      "server": "104.21.91.53",
-      "server_port": 8443,
-      "type": "vmess",
-      "uuid": "60441548-b68e-43b2-8191-e3b884be4b3c",
-      "security": "auto",
-      "alter_id": 0,
-      "tls": {
-        "enabled": true,
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/lMnsZUN4/",
-        "headers": {
-          "Host": "v2ray1.dozapp.xyz"
-        }
-      }
-    },
-    {
       "type": "selector",
       "tag": "🔒 🇺🇸 美国-其他 (固定纯净IP)",
       "outbounds": [
-        "🇺🇸 美国-其他-01 [纯净机房|1072ms]",
-        "🇺🇸 美国-其他-02 [纯净机房|1210ms]",
-        "🇺🇸 美国-其他-03 [纯净机房|1295ms]",
-        "🇺🇸 美国-其他-04 [纯净机房|1360ms]",
-        "🇺🇸 美国-其他-05 [纯净机房|4197ms]",
+        "🇺🇸 美国-其他-01 [原生ISP|142ms]",
+        "🇺🇸 美国-其他-02 [纯净机房|2614ms]",
+        "🇺🇸 美国-其他-03 [纯净机房|6335ms]",
         "direct"
       ],
-      "default": "🇺🇸 美国-其他-01 [纯净机房|1072ms]"
+      "default": "🇺🇸 美国-其他-01 [原生ISP|142ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇺🇸 美国-其他 (防抖优选)",
       "outbounds": [
-        "🇺🇸 美国-其他-01 [纯净机房|1072ms]",
-        "🇺🇸 美国-其他-02 [纯净机房|1210ms]",
-        "🇺🇸 美国-其他-03 [纯净机房|1295ms]",
-        "🇺🇸 美国-其他-04 [纯净机房|1360ms]",
-        "🇺🇸 美国-其他-05 [纯净机房|4197ms]"
+        "🇺🇸 美国-其他-01 [原生ISP|142ms]",
+        "🇺🇸 美国-其他-02 [纯净机房|2614ms]",
+        "🇺🇸 美国-其他-03 [纯净机房|6335ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -786,28 +1089,43 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇺🇸 美国-芝加哥-01 [纯净机房|283ms]",
-      "server": "172.66.203.67",
-      "server_port": 443,
-      "type": "vmess",
-      "uuid": "0cf6d970-3f1d-4aae-a989-92a8f76ae3db",
-      "security": "auto",
-      "alter_id": 0,
-      "tls": {
-        "enabled": true,
-        "server_name": "vmess.lbw666.dpdns.org",
-        "insecure": true
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/ws",
-        "headers": {
-          "Host": "vmess.lbw666.dpdns.org"
-        }
-      }
+      "tag": "🇺🇸 美国-洛杉矶-01 [原生ISP|1721ms]",
+      "server": "103.238.140.162",
+      "server_port": 10002,
+      "type": "shadowsocks",
+      "method": "2022-blake3-aes-128-gcm",
+      "password": "qryl6xVLkWXZlqD7CccpQw=="
     },
     {
-      "tag": "🇺🇸 美国-芝加哥-02 [纯净机房|7570ms]",
+      "tag": "🇺🇸 美国-洛杉矶-02 [纯净机房|5903ms]",
+      "server": "sdf65h46wr.df6h451rh.xin",
+      "server_port": 443,
+      "type": "anytls"
+    },
+    {
+      "type": "selector",
+      "tag": "🔒 🇺🇸 美国-洛杉矶 (固定纯净IP)",
+      "outbounds": [
+        "🇺🇸 美国-洛杉矶-01 [原生ISP|1721ms]",
+        "🇺🇸 美国-洛杉矶-02 [纯净机房|5903ms]",
+        "direct"
+      ],
+      "default": "🇺🇸 美国-洛杉矶-01 [原生ISP|1721ms]"
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 🇺🇸 美国-洛杉矶 (防抖优选)",
+      "outbounds": [
+        "🇺🇸 美国-洛杉矶-01 [原生ISP|1721ms]",
+        "🇺🇸 美国-洛杉矶-02 [纯净机房|5903ms]"
+      ],
+      "url": "http://www.google.com/generate_204",
+      "interval": "600s",
+      "idle_timeout": "30m",
+      "interrupt_connect_latency": "3s"
+    },
+    {
+      "tag": "🇺🇸 美国-芝加哥-01 [纯净机房|4377ms]",
       "server": "104.21.7.133",
       "server_port": 443,
       "type": "vmess",
@@ -831,18 +1149,16 @@
       "type": "selector",
       "tag": "🔒 🇺🇸 美国-芝加哥 (固定纯净IP)",
       "outbounds": [
-        "🇺🇸 美国-芝加哥-01 [纯净机房|283ms]",
-        "🇺🇸 美国-芝加哥-02 [纯净机房|7570ms]",
+        "🇺🇸 美国-芝加哥-01 [纯净机房|4377ms]",
         "direct"
       ],
-      "default": "🇺🇸 美国-芝加哥-01 [纯净机房|283ms]"
+      "default": "🇺🇸 美国-芝加哥-01 [纯净机房|4377ms]"
     },
     {
       "type": "urltest",
       "tag": "⚡ 🇺🇸 美国-芝加哥 (防抖优选)",
       "outbounds": [
-        "🇺🇸 美国-芝加哥-01 [纯净机房|283ms]",
-        "🇺🇸 美国-芝加哥-02 [纯净机房|7570ms]"
+        "🇺🇸 美国-芝加哥-01 [纯净机房|4377ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
@@ -850,105 +1166,103 @@
       "interrupt_connect_latency": "3s"
     },
     {
-      "tag": "🇺🇸 美国-西雅图-01 [原生ISP|90ms]",
-      "server": "38.143.66.146",
+      "tag": "🇺🇸 美国-达拉斯-01 [原生ISP|78ms]",
+      "server": "167.17.67.171",
       "server_port": 19999,
       "type": "shadowsocks",
       "method": "aes-256-gcm",
       "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
     },
     {
-      "tag": "🇺🇸 美国-西雅图-02 [原生ISP|91ms]",
-      "server": "216.106.186.66",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "242a3d8eee5e4ed1a6bfa4141d549a25",
+      "tag": "🇺🇸 美国-达拉斯-02 [纯净机房|81ms]",
+      "server": "167.88.62.134",
+      "server_port": 1270,
+      "type": "vmess",
+      "uuid": "5c040f1d-45db-43bd-8d46-e4950e433735",
+      "security": "auto",
+      "alter_id": 0,
       "tls": {
         "enabled": true,
-        "server_name": "www.findlocaljobnetworkandbuildcommunityconnections.com",
+        "server_name": "xmfhlpy.com",
         "insecure": true
       }
     },
     {
-      "tag": "🇺🇸 美国-西雅图-03 [原生ISP|113ms]",
-      "server": "216.106.186.33",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
+      "tag": "🇺🇸 美国-达拉斯-03 [纯净机房|69ms]",
+      "server": "167.88.62.203",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇺🇸 美国-达拉斯-04 [纯净机房|82ms]",
+      "server": "167.88.62.56",
+      "server_port": 19999,
+      "type": "shadowsocks",
+      "method": "aes-256-gcm",
+      "password": "ZRpgaBeGxtENIXgvhpkZBKz9GnWRS2dYcx9O+a2iwN4="
+    },
+    {
+      "tag": "🇺🇸 美国-达拉斯-05 [纯净机房|94ms]",
+      "server": "167.88.62.51",
+      "server_port": 1270,
+      "type": "vmess",
+      "uuid": "5c040f1d-45db-43bd-8d46-e4950e433735",
+      "security": "auto",
+      "alter_id": 0,
       "tls": {
         "enabled": true,
-        "server_name": "resources.findlocaljobnetworkandbuildcommunityconnections.com",
+        "server_name": "xmfhlpy.com",
         "insecure": true
       }
     },
     {
-      "tag": "🇺🇸 美国-西雅图-04 [纯净机房|94ms]",
-      "server": "149.22.88.65",
+      "tag": "🇺🇸 美国-达拉斯-06 [纯净机房|108ms]",
+      "server": "167.88.62.56",
+      "server_port": 1270,
+      "type": "vmess",
+      "uuid": "5c040f1d-45db-43bd-8d46-e4950e433735",
+      "security": "auto",
+      "alter_id": 0,
+      "tls": {
+        "enabled": true,
+        "server_name": "xmfhlpy.com",
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇺🇸 美国-达拉斯-07 [纯净机房|116ms]",
+      "server": "23.133.176.14",
       "server_port": 443,
       "type": "http"
     },
     {
-      "tag": "🇺🇸 美国-西雅图-05 [原生ISP|260ms]",
-      "server": "216.106.186.155",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
-      "tls": {
-        "enabled": true,
-        "server_name": "api.findlocaljobnetworkandbuildcommunityconnections.com",
-        "insecure": true
-      }
-    },
-    {
-      "tag": "🇺🇸 美国-西雅图-06 [原生ISP|262ms]",
-      "server": "216.106.186.46",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
-      "tls": {
-        "enabled": true,
-        "server_name": "cdn.findlocaljobnetworkandbuildcommunityconnections.com",
-        "insecure": true
-      }
-    },
-    {
-      "tag": "🇺🇸 美国-西雅图-07 [原生ISP|371ms]",
-      "server": "216.106.186.82",
-      "server_port": 443,
-      "type": "trojan",
-      "password": "0ab6c98dae3b48e8b9c4a776b6c9c19a",
-      "tls": {
-        "enabled": true,
-        "server_name": "courses.findlocaljobnetworkandbuildcommunityconnections.com",
-        "insecure": true
-      }
-    },
-    {
       "type": "selector",
-      "tag": "🔒 🇺🇸 美国-西雅图 (固定纯净IP)",
+      "tag": "🔒 🇺🇸 美国-达拉斯 (固定纯净IP)",
       "outbounds": [
-        "🇺🇸 美国-西雅图-01 [原生ISP|90ms]",
-        "🇺🇸 美国-西雅图-02 [原生ISP|91ms]",
-        "🇺🇸 美国-西雅图-03 [原生ISP|113ms]",
-        "🇺🇸 美国-西雅图-04 [纯净机房|94ms]",
-        "🇺🇸 美国-西雅图-05 [原生ISP|260ms]",
-        "🇺🇸 美国-西雅图-06 [原生ISP|262ms]",
-        "🇺🇸 美国-西雅图-07 [原生ISP|371ms]",
+        "🇺🇸 美国-达拉斯-01 [原生ISP|78ms]",
+        "🇺🇸 美国-达拉斯-02 [纯净机房|81ms]",
+        "🇺🇸 美国-达拉斯-03 [纯净机房|69ms]",
+        "🇺🇸 美国-达拉斯-04 [纯净机房|82ms]",
+        "🇺🇸 美国-达拉斯-05 [纯净机房|94ms]",
+        "🇺🇸 美国-达拉斯-06 [纯净机房|108ms]",
+        "🇺🇸 美国-达拉斯-07 [纯净机房|116ms]",
         "direct"
       ],
-      "default": "🇺🇸 美国-西雅图-01 [原生ISP|90ms]"
+      "default": "🇺🇸 美国-达拉斯-01 [原生ISP|78ms]"
     },
     {
       "type": "urltest",
-      "tag": "⚡ 🇺🇸 美国-西雅图 (防抖优选)",
+      "tag": "⚡ 🇺🇸 美国-达拉斯 (防抖优选)",
       "outbounds": [
-        "🇺🇸 美国-西雅图-01 [原生ISP|90ms]",
-        "🇺🇸 美国-西雅图-02 [原生ISP|91ms]",
-        "🇺🇸 美国-西雅图-03 [原生ISP|113ms]",
-        "🇺🇸 美国-西雅图-04 [纯净机房|94ms]",
-        "🇺🇸 美国-西雅图-05 [原生ISP|260ms]",
-        "🇺🇸 美国-西雅图-06 [原生ISP|262ms]",
-        "🇺🇸 美国-西雅图-07 [原生ISP|371ms]"
+        "🇺🇸 美国-达拉斯-01 [原生ISP|78ms]",
+        "🇺🇸 美国-达拉斯-02 [纯净机房|81ms]",
+        "🇺🇸 美国-达拉斯-03 [纯净机房|69ms]",
+        "🇺🇸 美国-达拉斯-04 [纯净机房|82ms]",
+        "🇺🇸 美国-达拉斯-05 [纯净机房|94ms]",
+        "🇺🇸 美国-达拉斯-06 [纯净机房|108ms]",
+        "🇺🇸 美国-达拉斯-07 [纯净机房|116ms]"
       ],
       "url": "http://www.google.com/generate_204",
       "interval": "600s",
